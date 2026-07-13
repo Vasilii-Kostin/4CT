@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О проекте — 4CT</title>
+    <style>
+        /* общие стили */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+            margin-top: 0;
+        }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .lang-switch a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .lang-switch a:hover {
+            text-decoration: underline;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .column {
+            flex: 1;
+            min-width: 280px;
+        }
+        .column h2 {
+            font-size: 1.4rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.3rem;
+            margin-top: 0;
+        }
+        .column p {
+            margin: 0.8rem 0;
+        }
+        .column a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .column a:hover {
+            text-decoration: underline;
+        }
+        .footer-nav {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            font-size: 0.95rem;
+        }
+        .footer-nav a {
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 1.2rem;
+        }
+        .footer-nav a:hover {
+            text-decoration: underline;
+        }
+        /* для мобильных */
+        @media (max-width: 650px) {
+            .two-columns {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>О проекте</h1>
+
+    <!-- переключатель между колонками — чисто визуальный -->
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
+    </div>
+
+    <div class="two-columns">
+
+        <!-- КОЛОНКА РУССКИЙ -->
+        <div class="column">
+            <h2>🇷🇺 Русский</h2>
+            <p>Теорема о четырёх красках доказана. Она гарантирует, что любую карту (или планарный граф) можно раскрасить четырьмя цветами.</p>
+
+            <p>Однако на практике часто хочется использовать меньше цветов. Инженеры и проектировщики ищут способы экономии: меньше частот для вышек, меньше слоёв в печатных платах, меньше ресурсов.</p>
+
+            <p>Мой подход показывает, что в большинстве случаев можно обойтись тремя цветами, если немного изменить структуру графа (его топологию). Это дешевле, чем добавлять четвёртый цвет.</p>
+
+            <p>Я выделил всего два типа структур, которые требуют четвёртого цвета. Это небольшие "проблемные места" в графе. Если их устранить или обойти, граф становится трёхцветным. Это доказано <a href="theory.html">Теорией</a>.</p>
+
+            <p>Это делает мостик между теорией и практикой. Теперь инженеры могут не просто знать, что 4 цвета достаточно, но и принимать решения: стоит ли тратить ресурсы на четвёртый слой или лучше немного изменить схему.</p>
+
+            <p>В разделе <a href="demo.html">Демонстрация</a> вы сможете загрузить свой граф и увидеть, как работает алгоритм. Вы узнаете, можно ли раскрасить ваш граф тремя цветами или потребуется четыре, и увидите примеры раскрасок для обоих случаев. Это поможет принять обоснованное решение.</p>
+
+            <p>Я верю, что этот инструмент поможет кому-то сэкономить деньги и ресурсы. Возможно, он позволит установить больше вышек связи, используя только три частоты, или изготовить плату с тремя слоями вместо четырёх.</p>
+        </div>
+
+        <!-- КОЛОНКА АНГЛИЙСКИЙ -->
+        <div class="column">
+            <h2>🇬🇧 English</h2>
+            <p>The Four Color Theorem has been proven. It guarantees that any map (or planar graph) can be colored with four colors.</p>
+
+            <p>However, in practice, we often want to use fewer colors. Engineers and designers look for ways to save: fewer frequencies for towers, fewer layers in circuit boards, fewer resources.</p>
+
+            <p>My approach shows that in most cases, three colors are enough if we slightly change the structure of the graph (its topology). This is cheaper than adding a fourth color.</p>
+
+            <p>I identified only two types of structures that require a fourth color. These are small "problem areas" in the graph. If we remove or bypass them, the graph becomes three-colorable. This is proven by the <a href="theory.html">Theory</a>.</p>
+
+            <p>This builds a bridge between theory and practice. Now engineers can not just know that 4 colors are enough, but also make decisions: is it worth spending resources on a fourth layer, or is it better to slightly change the design.</p>
+
+            <p>In the <a href="demo.html">Demo</a> section, you will be able to upload your own graph and see the algorithm in action. You will find out if your graph can be colored with three colors or if four are needed, and you will see examples of colorings for both cases. This will help you make an informed decision.</p>
+
+            <p>I believe this tool will help someone save money and resources. Perhaps it will allow installing more communication towers using only three frequencies, or making a circuit board with three layers instead of four.</p>
+        </div>
+
+    </div>
+
+    <!-- навигация внизу (ссылки на другие страницы) -->
+    <div class="footer-nav">
+        <a href="index.html">🏠 Главная</a>
+        <a href="about.html">ℹ️ О проекте</a>
+        <a href="theory.html">📖 Теория</a>
+        <a href="demo.html">🧪 Демонстрация</a>
+        <a href="contacts.html">✉️ Контакты</a>
+    </div>
+
+</body>
+</html>
