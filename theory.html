@@ -27,12 +27,6 @@
         .section {
             margin: 1.5rem 0;
         }
-        .highlight {
-            background: #f0f4f8;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 500;
-        }
         .two-columns {
             display: flex;
             flex-wrap: wrap;
@@ -55,7 +49,7 @@
         }
         .pdf-link {
             display: inline-block;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             background: #2c3e50;
             color: white;
             padding: 0.6rem 1.2rem;
@@ -65,6 +59,11 @@
         }
         .pdf-link:hover {
             background: #1a2a3a;
+        }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
         }
         @media (max-width: 650px) {
             .two-columns {
@@ -76,94 +75,154 @@
 </head>
 <body>
 
-    <h1>📖 Теория</h1>
+    <h1>📖 Теория / Theory</h1>
 
-    <!-- Введение -->
-    <div class="section">
-        <p>
-            Теорема о четырёх красках утверждает, что любой планарный граф (или карту на плоскости) 
-            можно раскрасить четырьмя цветами так, чтобы соседние области имели разные цвета.
-            Классическое доказательство (Аппель и Хакен, 1977) опирается на компьютерный перебор 
-            тысяч конфигураций.
-        </p>
-        <p>
-            Здесь представлено <strong>конструктивное, человеко-проверяемое доказательство</strong>, 
-            которое даёт явный алгоритм раскраски.
-        </p>
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
     </div>
 
-    <!-- Основная идея -->
-    <h2>Основная идея</h2>
-    <div class="section">
-        <p>Доказательство строится в три этапа:</p>
-        <ol>
-            <li><strong>Построение базовой сетки.</strong> Произвольный планарный граф вкладывается в специальную планарную сетку (триангуляцию), собранную из одинаковых ячеек (два квадрата с диагоналями).</li>
-            <li><strong>Вложение графа.</strong> Рёбра графа прокладываются по сетке с расщеплением путей и последующим стягиванием лишних вершин. В результате получается минимальная триангуляция, содержащая исходный граф.</li>
-            <li><strong>Раскраска.</strong> Триангуляция раскрашивается в 4 цвета с помощью алгоритма, который выделяет «жёсткие» структуры («острова») и раскрашивает оставшуюся часть («море») тремя цветами.</li>
-        </ol>
-    </div>
-
-    <!-- Ключевые понятия: две колонки -->
-    <h2>Ключевые понятия</h2>
     <div class="two-columns">
+
+        <!-- ========== КОЛОНКА РУССКИЙ ========== -->
         <div class="column">
+            <h2>🇷🇺 Русский</h2>
+
+            <p>
+                Теорема о четырёх красках утверждает, что любой планарный граф (или карту на плоскости) 
+                можно раскрасить четырьмя цветами так, чтобы соседние области имели разные цвета.
+                Классическое доказательство (Аппель и Хакен, 1977) опирается на компьютерный перебор 
+                тысяч конфигураций.
+            </p>
+            <p>
+                Здесь представлено <strong>конструктивное, человеко-проверяемое доказательство</strong>, 
+                которое даёт явный алгоритм раскраски.
+            </p>
+
+            <h2>Основная идея</h2>
+            <p>Доказательство строится в три этапа:</p>
+            <ol>
+                <li><strong>Построение базовой сетки.</strong> Произвольный планарный граф вкладывается в специальную планарную сетку (триангуляцию), собранную из одинаковых ячеек (два квадрата с диагоналями).</li>
+                <li><strong>Вложение графа.</strong> Рёбра графа прокладываются по сетке с расщеплением путей и последующим стягиванием лишних вершин. В результате получается минимальная триангуляция, содержащая исходный граф.</li>
+                <li><strong>Раскраска.</strong> Триангуляция раскрашивается в 4 цвета с помощью алгоритма, который выделяет «жёсткие» структуры («острова») и раскрашивает оставшуюся часть («море») тремя цветами.</li>
+            </ol>
+
+            <h2>Ключевые понятия</h2>
             <h3>🏝️ Острова</h3>
             <p>Это локальные структуры, которые <strong>требуют четвёртого цвета</strong> и не могут быть раскрашены тремя цветами. Всего их два типа:</p>
             <ul>
                 <li><strong>Тип I — K₄:</strong> полный граф на 4 вершинах (все попарно соединены).</li>
                 <li><strong>Тип II — Нечётная звезда:</strong> центральная вершина, соединённая с вершинами нечётного цикла.</li>
             </ul>
-        </div>
-        <div class="column">
+
             <h3>🌊 Море</h3>
             <p>
                 Всё, что не входит в острова, называется <strong>морем</strong>. Море не содержит K₄ и нечётных звёзд, 
                 поэтому оно всегда может быть раскрашено <strong>тремя цветами</strong>.
                 Это ключевое упрощение: сложность локализована, а остальное тривиально.
             </p>
+
+            <h2>Почему только два типа островов?</h2>
+            <p>
+                Доказано, что в любой триангуляции <strong>единственные</strong> конфигурации, вынуждающие четвёртый цвет, — это K₄ и нечётная звезда.
+            </p>
+            <p>
+                Если триангуляция не содержит таких структур, она 3-раскрашиваема. Это доказывается индукцией с анализом чередующихся цепочек и замыканий (см. полный текст).
+            </p>
+
+            <h2>Алгоритм раскраски (кратко)</h2>
+            <ol>
+                <li>Построить базовую сетку вокруг вершин графа.</li>
+                <li>Провести рёбра с расщеплением, сохраняя триангуляцию.</li>
+                <li>Стянуть лишние вершины.</li>
+                <li>Найти все K₄ и нечётные звёзды (острова).</li>
+                <li>Зафиксировать ограничения для островов (какие вершины должны иметь разные цвета).</li>
+                <li>Раскрасить море тремя цветами, подстраиваясь под границы островов.</li>
+                <li>Раскрасить острова четвёртым цветом.</li>
+            </ol>
+            <p>
+                Все шаги <strong>детерминированы</strong> и требуют только локального анализа. 
+                Алгоритм всегда завершается за конечное число шагов.
+            </p>
+
+            <p style="margin-top: 2rem;">
+                Полный текст доказательства и описание алгоритма доступны в препринте на Zenodo:
+            </p>
+            <a href="https://zenodo.org/records/19709823" target="_blank" class="pdf-link">
+                📄 Читать полную статью (PDF, Zenodo)
+            </a>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #555;">
+                DOI: 10.5281/zenodo.19709823
+            </p>
         </div>
-    </div>
 
-    <!-- Почему только два типа? -->
-    <h2>Почему только два типа островов?</h2>
-    <div class="section">
-        <p>
-            Доказано, что в любой триангуляции <strong>единственные</strong> конфигурации, вынуждающие четвёртый цвет, — это K₄ и нечётная звезда.
-        </p>
-        <p>
-            Если триангуляция не содержит таких структур, она 3-раскрашиваема. Это доказывается индукцией с анализом чередующихся цепочек и замыканий (см. полный текст).
-        </p>
-    </div>
+        <!-- ========== КОЛОНКА АНГЛИЙСКИЙ ========== -->
+        <div class="column">
+            <h2>🇬🇧 English</h2>
 
-    <!-- Алгоритм раскраски -->
-    <h2>Алгоритм раскраски (кратко)</h2>
-    <div class="section">
-        <ol>
-            <li>Построить базовую сетку вокруг вершин графа.</li>
-            <li>Провести рёбра с расщеплением, сохраняя триангуляцию.</li>
-            <li>Стянуть лишние вершины.</li>
-            <li>Найти все K₄ и нечётные звёзды (острова).</li>
-            <li>Зафиксировать ограничения для островов (какие вершины должны иметь разные цвета).</li>
-            <li>Раскрасить море тремя цветами, подстраиваясь под границы островов.</li>
-            <li>Раскрасить острова четвёртым цветом.</li>
-        </ol>
-        <p>
-            Все шаги <strong>детерминированы</strong> и требуют только локального анализа. 
-            Алгоритм всегда завершается за конечное число шагов.
-        </p>
-    </div>
+            <p>
+                The Four Color Theorem states that any planar graph (or map on the plane) can be colored with four colors so that adjacent regions have different colors. The classic proof (Appel and Haken, 1977) relies on a computer search of thousands of configurations.
+            </p>
+            <p>
+                Here we present a <strong>constructive, human-verifiable proof</strong> that provides an explicit coloring algorithm.
+            </p>
 
-    <!-- Ссылка на полный текст -->
-    <div class="section" style="margin-top: 2.5rem;">
-        <p>
-            Полный текст доказательства и описание алгоритма доступны в препринте на Zenodo:
-        </p>
-        <a href="https://zenodo.org/records/19709823" target="_blank" class="pdf-link">
-            📄 Читать полную статью (PDF, Zenodo)
-        </a>
-        <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #555;">
-            DOI: 10.5281/zenodo.19709823
-        </p>
+            <h2>Main Idea</h2>
+            <p>The proof consists of three stages:</p>
+            <ol>
+                <li><strong>Building a base grid.</strong> An arbitrary planar graph is embedded into a special planar grid (a triangulation) made of identical cells (two squares with diagonals).</li>
+                <li><strong>Graph embedding.</strong> The edges of the graph are routed through the grid with path splitting and subsequent contraction of extra vertices. The result is a minimal triangulation containing the original graph.</li>
+                <li><strong>Coloring.</strong> The triangulation is colored with 4 colors using an algorithm that identifies “rigid” structures (“islands”) and colors the remaining part (“the sea”) with three colors.</li>
+            </ol>
+
+            <h2>Key Concepts</h2>
+            <h3>🏝️ Islands</h3>
+            <p>These are local structures that <strong>require a fourth color</strong> and cannot be colored with three. There are only two types:</p>
+            <ul>
+                <li><strong>Type I — K₄:</strong> a complete graph on 4 vertices (all pairwise connected).</li>
+                <li><strong>Type II — Odd star:</strong> a central vertex connected to an odd cycle.</li>
+            </ul>
+
+            <h3>🌊 The Sea</h3>
+            <p>
+                Everything that is not an island is called the <strong>sea</strong>. The sea contains no K₄ or odd stars, 
+                so it can always be colored with <strong>three colors</strong>.
+                This is the key simplification: complexity is localised, and the rest is trivial.
+            </p>
+
+            <h2>Why only two types?</h2>
+            <p>
+                It is proven that in any triangulation, the <strong>only</strong> configurations that force a fourth color are K₄ and the odd star.
+            </p>
+            <p>
+                If a triangulation contains no such structures, it is 3-colorable. This is proved by induction with an analysis of alternating chains and closures (see the full text).
+            </p>
+
+            <h2>Coloring Algorithm (briefly)</h2>
+            <ol>
+                <li>Build the base grid around the vertices of the graph.</li>
+                <li>Draw the edges with splitting, preserving the triangulation.</li>
+                <li>Contract extra vertices.</li>
+                <li>Find all K₄ and odd stars (islands).</li>
+                <li>Fix constraints for the islands (which vertices must have different colors).</li>
+                <li>Color the sea with three colors, adapting to island boundaries.</li>
+                <li>Color the islands with the fourth color.</li>
+            </ol>
+            <p>
+                All steps are <strong>deterministic</strong> and require only local analysis. 
+                The algorithm always terminates in finitely many steps.
+            </p>
+
+            <p style="margin-top: 2rem;">
+                The full proof and algorithm description are available in the preprint on Zenodo:
+            </p>
+            <a href="https://zenodo.org/records/19709823" target="_blank" class="pdf-link">
+                📄 Read the full paper (PDF, Zenodo)
+            </a>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #555;">
+                DOI: 10.5281/zenodo.19709823
+            </p>
+        </div>
+
     </div>
 
     <!-- Подключаем меню и подвал -->
