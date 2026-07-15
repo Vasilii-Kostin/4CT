@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — 4CT</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+        }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .column {
+            flex: 1;
+            min-width: 280px;
+        }
+        .column h2 {
+            font-size: 1.5rem;
+            border-left: 4px solid #2c3e50;
+            padding-left: 0.8rem;
+        }
+        .contact-item {
+            margin: 1.2rem 0;
+            padding: 0.8rem 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #2c3e50;
+        }
+        .contact-item a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        .contact-item .label {
+            font-weight: 600;
+            color: #2c3e50;
+            display: inline-block;
+            width: 90px;
+        }
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        .social-links a {
+            display: inline-block;
+            margin-right: 1.2rem;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .social-links a:hover {
+            color: #0066cc;
+        }
+        @media (max-width: 650px) {
+            .two-columns {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .contact-item .label {
+                width: auto;
+                display: block;
+                margin-bottom: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>✉️ Контакты / Contacts</h1>
+
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
+    </div>
+
+    <div class="two-columns">
+
+        <!-- ===== РУССКАЯ КОЛОНКА ===== -->
+        <div class="column">
+            <h2>🇷🇺 Русский</h2>
+
+            <p>
+                Если у вас есть вопросы, предложения или вы хотите обсудить сотрудничество — напишите мне.
+                Я открыт к общению и всегда рад обратной связи.
+            </p>
+
+            <div class="contact-item">
+                <span class="label">📧 Email:</span>
+                <a href="mailto:Kostin_VE@mail.ru">Kostin_VE@mail.ru</a>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">📄 ORCID:</span>
+                <a href="https://orcid.org/0009-0005-0155-5328" target="_blank">
+                    0009-0005-0155-5328
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">📚 Zenodo:</span>
+                <a href="https://zenodo.org/records/19709823" target="_blank">
+                    Препринт (4CT)
+                </a>
+                <span style="color: #777; font-size: 0.9rem; display: block; margin-top: 0.2rem;">
+                    DOI: 10.5281/zenodo.19709823
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">🐙 GitHub:</span>
+                <a href="https://github.com/Vasilii-Kostin/4CT" target="_blank">
+                    github.com/Vasilii-Kostin/4CT
+                </a>
+                <span style="color: #777; font-size: 0.9rem; display: block; margin-top: 0.2rem;">
+                    исходный код сайта и проекта
+                </span>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/Vasilii-Kostin" target="_blank">GitHub</a>
+                <a href="https://orcid.org/0009-0005-0155-5328" target="_blank">ORCID</a>
+            </div>
+        </div>
+
+        <!-- ===== АНГЛИЙСКАЯ КОЛОНКА ===== -->
+        <div class="column">
+            <h2>🇬🇧 English</h2>
+
+            <p>
+                If you have questions, suggestions, or would like to discuss collaboration — feel free to reach out.
+                I am open to communication and always happy to receive feedback.
+            </p>
+
+            <div class="contact-item">
+                <span class="label">📧 Email:</span>
+                <a href="mailto:Kostin_VE@mail.ru">Kostin_VE@mail.ru</a>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">📄 ORCID:</span>
+                <a href="https://orcid.org/0009-0005-0155-5328" target="_blank">
+                    0009-0005-0155-5328
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">📚 Zenodo:</span>
+                <a href="https://zenodo.org/records/19709823" target="_blank">
+                    Preprint (4CT)
+                </a>
+                <span style="color: #777; font-size: 0.9rem; display: block; margin-top: 0.2rem;">
+                    DOI: 10.5281/zenodo.19709823
+                </span>
+            </div>
+
+            <div class="contact-item">
+                <span class="label">🐙 GitHub:</span>
+                <a href="https://github.com/Vasilii-Kostin/4CT" target="_blank">
+                    github.com/Vasilii-Kostin/4CT
+                </a>
+                <span style="color: #777; font-size: 0.9rem; display: block; margin-top: 0.2rem;">
+                    source code of the site and project
+                </span>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/Vasilii-Kostin" target="_blank">GitHub</a>
+                <a href="https://orcid.org/0009-0005-0155-5328" target="_blank">ORCID</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Подключаем меню и подвал -->
+    <script src="menu.js"></script>
+
+</body>
+</html>
