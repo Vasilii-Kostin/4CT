@@ -82,6 +82,14 @@
             margin: 1rem 0;
             border-radius: 4px;
         }
+        .highlight-box.warning {
+            border-left-color: #cc5500;
+            background: #fff8f0;
+        }
+        .highlight-box.success {
+            border-left-color: #2e7d32;
+            background: #f0f8f0;
+        }
         .structure-types {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -111,12 +119,42 @@
         .badge-star { background: #00008b; color: white; }
         .badge-chain { background: #cc5500; color: white; }
         .badge-combo { background: #800080; color: white; }
+        .algorithm-steps {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .algorithm-steps ol {
+            margin: 0.5rem 0;
+        }
+        .algorithm-steps li {
+            margin-bottom: 0.5rem;
+        }
+        .conflict-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin: 0.5rem 0;
+        }
+        .conflict-type {
+            background: #f8f9fa;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid #cc5500;
+        }
+        .conflict-type strong {
+            color: #cc5500;
+        }
         @media (max-width: 650px) {
             .two-columns {
                 flex-direction: column;
                 gap: 0.5rem;
             }
             .structure-types {
+                grid-template-columns: 1fr;
+            }
+            .conflict-types {
                 grid-template-columns: 1fr;
             }
         }
@@ -198,22 +236,22 @@
                         <li><strong>Структура:</strong> Центр + нечётный цикл (3, 5, 7, ... вершин)</li>
                         <li><strong>Вынужденный цвет:</strong> Центр получает один цвет, цикл чередует два других</li>
                         <li><strong>Пример:</strong> Звезда с центром и треугольником, пятиугольником и т.д.</li>
-                        <li><strong>Особенность:</strong> Может быть <em>скрытой</em> (см. цепочки вынужденности)</li>
+                        <li><strong>Особенность:</strong> Явная структура, видимая непосредственно в графе</li>
                     </ul>
                 </div>
 
-                <!-- Тип III: Цепочка вынужденности -->
+                <!-- Тип III: Цепочка вынужденности (исправлено) -->
                 <div class="structure-card">
                     <h4>
                         <span class="badge badge-chain">Тип III</span>
                         Цепочка вынужденности
                     </h4>
-                    <p><strong>Описание:</strong> Последовательность треугольников, где каждый следующий имеет общее ребро с предыдущим, содержащее центр.</p>
+                    <p><strong>Описание:</strong> Последовательность треугольников, соединённых по общим рёбрам.</p>
                     <ul>
-                        <li><strong>Структура:</strong> Центр + последовательность треугольников</li>
-                        <li><strong>Вынужденный цвет:</strong> Цвета распространяются по цепочке, создавая конфликт при замыкании</li>
-                        <li><strong>Пример:</strong> 7 треугольников, образующих замкнутую цепочку вокруг центра</li>
-                        <li><strong>Особенность:</strong> <em>Скрытая нечётная звезда</em> — неочевидная структура</li>
+                        <li><strong>Структура:</strong> Треугольники, соединённые в цепочку</li>
+                        <li><strong>Вынужденный цвет:</strong> Треугольники вынуждают вершины принимать строго определённые цвета, и при замыкании цепочки возникает конфликт</li>
+                        <li><strong>Пример:</strong> Последовательность треугольников, где первый и последний соединены</li>
+                        <li><strong>Особенность:</strong> Может проходить по всему графу, не имея выделенного центра</li>
                     </ul>
                 </div>
 
@@ -255,7 +293,7 @@
             <ol>
                 <li><strong>K₄</strong> — полный граф на 4 вершинах</li>
                 <li><strong>Нечётная звезда</strong> — центр + нечётный цикл</li>
-                <li><strong>Цепочка вынужденности</strong> — скрытая нечётная звезда</li>
+                <li><strong>Цепочка вынужденности</strong> — последовательность треугольников, создающих конфликт при замыкании</li>
             </ol>
             <p>
                 Все остальные структуры являются <strong>комбинациями</strong> этих трёх базовых типов.
@@ -265,6 +303,30 @@
                 Это доказывается индукцией с анализом чередующихся цепочек и замыканий.
             </p>
 
+            <h3>Два типа конфликтов в цепочке вынужденности</h3>
+            <p>
+                При замыкании цепочки вынужденности возможны два типа конфликтов:
+            </p>
+            <div class="conflict-types">
+                <div class="conflict-type">
+                    <strong>Тип A:</strong> Разные цвета
+                    <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
+                        Вершина в конце должна иметь <strong>другой</strong> цвет, чем в начале.
+                        <br><em>Пример:</em> цепочка соединяет вершины, которые должны быть разного цвета (ребро).
+                    </p>
+                </div>
+                <div class="conflict-type">
+                    <strong>Тип B:</strong> Одинаковые цвета
+                    <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
+                        Вершина в конце должна иметь <strong>такой же</strong> цвет, как в начале.
+                        <br><em>Пример:</em> цепочка замыкается на ту же вершину, но по логике должна дать другой цвет.
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.95rem; color: #555;">
+                В обоих случаях возникает противоречие, которое требует разбиения ребра для устранения.
+            </p>
+
             <h3>Обнаружение и разбиение</h3>
             <p>
                 Алгоритм работает следующим образом:
@@ -272,17 +334,17 @@
             <ol>
                 <li><strong>Обнаружение:</strong> Находит все K₄, нечётные звёзды и цепочки вынужденности</li>
                 <li><strong>Анализ:</strong> Строит таблицу участия рёбер в структурах</li>
-                <li><strong>Разбиение:</strong> Выбирает рёбра с максимальной уникальностью и разбивает их</li>
+                <li><strong>Разбиение:</strong> Выбирает рёбра с максимальной суммой участия и разбивает их</li>
                 <li><strong>Повторение:</strong> После разбиения структуры перестраиваются</li>
                 <li><strong>Завершение:</strong> Когда все структуры уничтожены — граф становится 3-раскрашиваемым</li>
             </ol>
             <p>
                 <strong>Важно:</strong> Для каждого графа требуется <strong>конечное</strong> число разбиений. 
-                В экспериментах на графах до 100 вершин требовалось не более 22 разбиений.
+                В экспериментах на графах до 35 вершин требовалось не более 11 разбиений.
             </p>
 
             <h3>Теорема о конечности</h3>
-            <div class="highlight-box">
+            <div class="highlight-box success">
                 <strong>Теорема:</strong> Любой не-3-раскрашиваемый планарный граф содержит конечный набор 
                 структур типа K₄, нечётных звёзд и цепочек вынужденности. 
                 Разбиение рёбер этих структур приводит к 3-раскрашиваемому графу.
@@ -297,20 +359,40 @@
             </ul>
 
             <h2>Алгоритм раскраски (полный)</h2>
-            <ol>
-                <li>Построить базовую сетку вокруг вершин графа</li>
-                <li>Провести рёбра с расщеплением, сохраняя триангуляцию</li>
-                <li>Стянуть лишние вершины</li>
-                <li>Найти все K₄, нечётные звёзды и цепочки вынужденности</li>
-                <li>Построить таблицу участия рёбер в структурах</li>
-                <li>Последовательно разбивать рёбра с максимальной уникальностью</li>
-                <li>После уничтожения всех структур — раскрасить море тремя цветами</li>
-                <li>Раскрасить острова четвёртым цветом</li>
-            </ol>
+            <div class="algorithm-steps">
+                <ol>
+                    <li><strong>Построить базовую сетку</strong> вокруг вершин графа</li>
+                    <li><strong>Провести рёбра</strong> с расщеплением, сохраняя триангуляцию</li>
+                    <li><strong>Стянуть лишние вершины</strong></li>
+                    <li><strong>Найти все K₄</strong> — полные графы на 4 вершинах</li>
+                    <li><strong>Найти все нечётные звёзды</strong> — центр + нечётный цикл</li>
+                    <li><strong>Найти все цепочки вынужденности</strong> — последовательности треугольников, создающих конфликт при замыкании</li>
+                    <li><strong>Построить таблицу участия</strong> рёбер в найденных структурах</li>
+                    <li><strong>Последовательно разбивать</strong> рёбра с максимальной суммой участия</li>
+                    <li><strong>После уничтожения всех структур</strong> — раскрасить море тремя цветами</li>
+                    <li><strong>Раскрасить острова</strong> четвёртым цветом</li>
+                </ol>
+            </div>
             <p>
                 Все шаги <strong>детерминированы</strong> и требуют только локального анализа. 
                 Алгоритм всегда завершается за конечное число шагов.
             </p>
+
+            <div class="highlight-box warning">
+                <strong>Важное замечание о цепочках вынужденности:</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    Цепочка вынужденности — это последовательность треугольников, где каждый следующий имеет общее ребро с предыдущим. 
+                    При замыкании цепочки возникает конфликт одного из двух типов:
+                </p>
+                <ul style="margin: 0.3rem 0 0 1.2rem;">
+                    <li><strong>Тип A:</strong> вершина в конце должна иметь <strong>другой</strong> цвет, чем в начале</li>
+                    <li><strong>Тип B:</strong> вершина в конце должна иметь <strong>такой же</strong> цвет, как в начале</li>
+                </ul>
+                <p style="margin: 0.3rem 0 0 0;">
+                    У цепочки <strong>нет выделенного центра</strong> — она может проходить по всему графу.
+                    Цепочка не является «скрытой нечётной звездой»; это самостоятельный тип структуры.
+                </p>
+            </div>
 
             <p style="margin-top: 2rem;">
                 Полный текст доказательства и описание алгоритма доступны в препринте на Zenodo:
@@ -339,7 +421,7 @@
             <ol>
                 <li><strong>Building a base grid.</strong> An arbitrary planar graph is embedded into a special planar grid (a triangulation) made of identical cells (two squares with diagonals).</li>
                 <li><strong>Graph embedding.</strong> The edges of the graph are routed through the grid with path splitting and subsequent contraction of extra vertices. The result is a minimal triangulation containing the original graph.</li>
-                <li><strong>Coloring.</strong> The triangulation is colored with 4 colors using an algorithm that identifies “rigid” structures (“islands”) and colors the remaining part (“the sea”) with three colors.</li>
+                <li><strong>Coloring.</strong> The triangulation is colored with 4 colors using an algorithm that identifies "rigid" structures ("islands") and colors the remaining part ("the sea") with three colors.</li>
             </ol>
 
             <h2>Key Concepts</h2>
@@ -384,22 +466,22 @@
                         <li><strong>Structure:</strong> Center + odd cycle (3, 5, 7, ... vertices)</li>
                         <li><strong>Forced color:</strong> Center gets one color, cycle alternates two others</li>
                         <li><strong>Example:</strong> Star with center and triangle, pentagon, etc.</li>
-                        <li><strong>Feature:</strong> Can be <em>hidden</em> (see forced chains)</li>
+                        <li><strong>Feature:</strong> Explicit structure, visible directly in the graph</li>
                     </ul>
                 </div>
 
-                <!-- Type III: Forced Chain -->
+                <!-- Type III: Forced Chain (corrected) -->
                 <div class="structure-card">
                     <h4>
                         <span class="badge badge-chain">Type III</span>
                         Forced Chain
                     </h4>
-                    <p><strong>Description:</strong> A sequence of triangles where each shares an edge with the previous, containing the center.</p>
+                    <p><strong>Description:</strong> A sequence of triangles connected by common edges.</p>
                     <ul>
-                        <li><strong>Structure:</strong> Center + sequence of triangles</li>
-                        <li><strong>Forced color:</strong> Colors propagate along the chain, creating conflict at closure</li>
-                        <li><strong>Example:</strong> 7 triangles forming a closed chain around the center</li>
-                        <li><strong>Feature:</strong> <em>Hidden odd star</em> — non-obvious structure</li>
+                        <li><strong>Structure:</strong> Triangles connected in a chain</li>
+                        <li><strong>Forced color:</strong> Triangles force vertices to have strictly defined colors, and when the chain closes, a conflict arises</li>
+                        <li><strong>Example:</strong> A sequence of triangles where the first and last are connected</li>
+                        <li><strong>Feature:</strong> Can traverse the entire graph without having a distinguished center</li>
                     </ul>
                 </div>
 
@@ -441,7 +523,7 @@
             <ol>
                 <li><strong>K₄</strong> — complete graph on 4 vertices</li>
                 <li><strong>Odd star</strong> — center + odd cycle</li>
-                <li><strong>Forced chain</strong> — hidden odd star</li>
+                <li><strong>Forced chain</strong> — a sequence of triangles that creates a conflict upon closure</li>
             </ol>
             <p>
                 All other structures are <strong>combinations</strong> of these three basic types.
@@ -451,6 +533,30 @@
                 This is proved by induction with an analysis of alternating chains and closures.
             </p>
 
+            <h3>Two types of conflicts in a forced chain</h3>
+            <p>
+                When a forced chain closes, two types of conflicts are possible:
+            </p>
+            <div class="conflict-types">
+                <div class="conflict-type">
+                    <strong>Type A:</strong> Different colors
+                    <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
+                        The vertex at the end must have a <strong>different</strong> color than at the beginning.
+                        <br><em>Example:</em> the chain connects vertices that must have different colors (an edge).
+                    </p>
+                </div>
+                <div class="conflict-type">
+                    <strong>Type B:</strong> Same colors
+                    <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
+                        The vertex at the end must have the <strong>same</strong> color as at the beginning.
+                        <br><em>Example:</em> the chain closes on the same vertex, but logically should give a different color.
+                    </p>
+                </div>
+            </div>
+            <p style="font-size: 0.95rem; color: #555;">
+                In both cases, a contradiction arises that requires edge splitting to resolve.
+            </p>
+
             <h3>Detection and Splitting</h3>
             <p>
                 The algorithm works as follows:
@@ -458,17 +564,17 @@
             <ol>
                 <li><strong>Detection:</strong> Finds all K₄, odd stars, and forced chains</li>
                 <li><strong>Analysis:</strong> Builds edge participation table for structures</li>
-                <li><strong>Splitting:</strong> Selects edges with maximum uniqueness and splits them</li>
+                <li><strong>Splitting:</strong> Selects edges with maximum total participation and splits them</li>
                 <li><strong>Repeat:</strong> After splitting, structures are rebuilt</li>
                 <li><strong>Completion:</strong> When all structures are destroyed — graph becomes 3-colorable</li>
             </ol>
             <p>
                 <strong>Important:</strong> For each graph, a <strong>finite</strong> number of splittings is required. 
-                In experiments on graphs up to 100 vertices, no more than 22 splittings were needed.
+                In experiments on graphs up to 35 vertices, no more than 11 splittings were needed.
             </p>
 
             <h3>Finiteness Theorem</h3>
-            <div class="highlight-box">
+            <div class="highlight-box success">
                 <strong>Theorem:</strong> Any non-3-colorable planar graph contains a finite set of structures 
                 of types K₄, odd stars, and forced chains. Splitting the edges of these structures leads to a 3-colorable graph.
             </div>
@@ -482,20 +588,40 @@
             </ul>
 
             <h2>Coloring Algorithm (full)</h2>
-            <ol>
-                <li>Build the base grid around the vertices of the graph</li>
-                <li>Draw the edges with splitting, preserving the triangulation</li>
-                <li>Contract extra vertices</li>
-                <li>Find all K₄, odd stars, and forced chains</li>
-                <li>Build the edge participation table for the structures</li>
-                <li>Sequentially split edges with maximum uniqueness</li>
-                <li>After all structures are destroyed — color the sea with three colors</li>
-                <li>Color the islands with the fourth color</li>
-            </ol>
+            <div class="algorithm-steps">
+                <ol>
+                    <li><strong>Build the base grid</strong> around the vertices of the graph</li>
+                    <li><strong>Draw the edges</strong> with splitting, preserving the triangulation</li>
+                    <li><strong>Contract extra vertices</strong></li>
+                    <li><strong>Find all K₄</strong> — complete graphs on 4 vertices</li>
+                    <li><strong>Find all odd stars</strong> — center + odd cycle</li>
+                    <li><strong>Find all forced chains</strong> — sequences of triangles that create a conflict upon closure</li>
+                    <li><strong>Build the edge participation table</strong> for the found structures</li>
+                    <li><strong>Sequentially split</strong> edges with maximum total participation</li>
+                    <li><strong>After all structures are destroyed</strong> — color the sea with three colors</li>
+                    <li><strong>Color the islands</strong> with the fourth color</li>
+                </ol>
+            </div>
             <p>
                 All steps are <strong>deterministic</strong> and require only local analysis. 
                 The algorithm always terminates in finitely many steps.
             </p>
+
+            <div class="highlight-box warning">
+                <strong>Important note about forced chains:</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    A forced chain is a sequence of triangles where each next triangle shares an edge with the previous one.
+                    When the chain closes, a conflict of one of two types arises:
+                </p>
+                <ul style="margin: 0.3rem 0 0 1.2rem;">
+                    <li><strong>Type A:</strong> the vertex at the end must have a <strong>different</strong> color than at the beginning</li>
+                    <li><strong>Type B:</strong> the vertex at the end must have the <strong>same</strong> color as at the beginning</li>
+                </ul>
+                <p style="margin: 0.3rem 0 0 0;">
+                    The chain <strong>has no distinguished center</strong> — it can traverse the entire graph.
+                    The chain is not a "hidden odd star"; it is an independent type of structure.
+                </p>
+            </div>
 
             <p style="margin-top: 2rem;">
                 The full proof and algorithm description are available in the preprint on Zenodo:
