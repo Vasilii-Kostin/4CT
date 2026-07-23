@@ -59,6 +59,13 @@
         .column a:hover {
             text-decoration: underline;
         }
+        .highlight-box {
+            background: #f0f4f8;
+            border-left: 4px solid #2c3e50;
+            padding: 0.8rem 1.2rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
         .footer-nav {
             margin-top: 2.5rem;
             padding-top: 1rem;
@@ -96,37 +103,51 @@
         <!-- КОЛОНКА РУССКИЙ -->
         <div class="column">
             <h2>🇷🇺 Русский</h2>
-            <p>Теорема о четырёх красках доказана. Она гарантирует, что любую карту (или планарный граф) можно раскрасить четырьмя цветами.</p>
 
-            <p>Однако на практике часто хочется использовать меньше цветов. Инженеры и проектировщики ищут способы экономии: меньше частот для вышек, меньше слоёв в печатных платах, меньше ресурсов.</p>
+            <div class="highlight-box">
+                <strong>Главная цель проекта</strong> — построить <strong>конструктивный, человеко-проверяемый мост</strong> между теоремой о четырёх красках и практической реализацией раскраски.
+            </div>
 
-            <p>Мой подход показывает, что в большинстве случаев можно обойтись тремя цветами, если немного изменить структуру графа (его топологию). Это дешевле, чем добавлять четвёртый цвет.</p>
+            <p>Теорема о четырёх красках доказана. Она гарантирует, что любую карту (или планарный граф) можно раскрасить четырьмя цветами. Однако классическое доказательство (Аппель и Хакен, 1977) не даёт алгоритма, который можно было бы выполнить вручную или легко запрограммировать.</p>
 
-            <p>Я выделил всего два типа структур, которые требуют четвёртого цвета. Это небольшие "проблемные места" в графе. Если их устранить или обойти, граф становится трёхцветным. Это доказано <a href="theory.html">Теорией</a>.</p>
+            <p><strong>Мой подход</strong> предлагает явный, детерминированный алгоритм, который всегда находит правильную 4-цветную раскраску для любого планарного графа. Алгоритм работает не путём перебора, а через последовательное выявление и устранение структур, требующих четвёртого цвета.</p>
 
-            <p>Это делает мостик между теорией и практикой. Теперь инженеры могут не просто знать, что 4 цвета достаточно, но и принимать решения: стоит ли тратить ресурсы на четвёртый слой или лучше немного изменить схему.</p>
+            <p>Это делает <strong>мостик между теорией и практикой</strong>. Теперь инженеры и разработчики могут не просто знать, что 4 цвета достаточно, но и получить готовую раскраску для своего графа, понимая, почему именно так распределились цвета.</p>
 
-            <p>В разделе <a href="demo.html">Демонстрация</a> вы сможете загрузить свой граф и увидеть, как работает алгоритм. Вы узнаете, можно ли раскрасить ваш граф тремя цветами или потребуется четыре, и увидите примеры раскрасок для обоих случаев. Это поможет принять обоснованное решение.</p>
+            <p>В дополнение к этому, алгоритм даёт возможность <strong>оптимизировать</strong> раскраску: в большинстве случаев после устранения проблемных структур можно обойтись всего <strong>тремя цветами</strong>. Это открывает путь к экономии ресурсов — меньше частот для вышек связи, меньше слоёв в печатных платах, меньше затрат.</p>
 
-            <p>Я верю, что этот инструмент поможет кому-то сэкономить деньги и ресурсы. Возможно, он позволит установить больше вышек связи, используя только три частоты, или изготовить плату с тремя слоями вместо четырёх.</p>
+            <div class="highlight-box">
+                <strong>Ключевая идея:</strong> в любом планарном графе есть всего три типа структур, которые мешают трёхцветной раскраске. Устраняя их, мы получаем 4-цветную раскраску (гарантированно) и часто — 3-цветную (оптимально).
+            </div>
+
+            <p>В разделе <a href="demo.html">Демонстрация</a> вы сможете загрузить свой граф и увидеть, как работает алгоритм. Вы получите готовую 4-цветную раскраску, а также узнаете, можно ли в вашем случае обойтись тремя цветами.</p>
+
+            <p>Я верю, что этот инструмент поможет не только проверить теорему, но и применить её на практике — в проектировании сетей, микроэлектронике, планировании и других областях.</p>
         </div>
 
         <!-- КОЛОНКА АНГЛИЙСКИЙ -->
         <div class="column">
             <h2>🇬🇧 English</h2>
-            <p>The Four Color Theorem has been proven. It guarantees that any map (or planar graph) can be colored with four colors.</p>
 
-            <p>However, in practice, we often want to use fewer colors. Engineers and designers look for ways to save: fewer frequencies for towers, fewer layers in circuit boards, fewer resources.</p>
+            <div class="highlight-box">
+                <strong>The main goal of this project</strong> is to build a <strong>constructive, human-verifiable bridge</strong> between the Four Color Theorem and practical coloring implementation.
+            </div>
 
-            <p>My approach shows that in most cases, three colors are enough if we slightly change the structure of the graph (its topology). This is cheaper than adding a fourth color.</p>
+            <p>The Four Color Theorem has been proven. It guarantees that any map (or planar graph) can be colored with four colors. However, the classic proof (Appel and Haken, 1977) does not provide an algorithm that can be performed manually or easily programmed.</p>
 
-            <p>I identified only two types of structures that require a fourth color. These are small "problem areas" in the graph. If we remove or bypass them, the graph becomes three-colorable. This is proven by the <a href="theory.html">Theory</a>.</p>
+            <p><strong>My approach</strong> offers an explicit, deterministic algorithm that always finds a correct 4-coloring for any planar graph. The algorithm works not by brute force, but by sequentially identifying and eliminating structures that require a fourth color.</p>
 
-            <p>This builds a bridge between theory and practice. Now engineers can not just know that 4 colors are enough, but also make decisions: is it worth spending resources on a fourth layer, or is it better to slightly change the design.</p>
+            <p>This creates a <strong>bridge between theory and practice</strong>. Engineers and developers can now not just know that 4 colors are sufficient, but also obtain a ready-made coloring for their graph, understanding why the colors were distributed that way.</p>
 
-            <p>In the <a href="demo.html">Demo</a> section, you will be able to upload your own graph and see the algorithm in action. You will find out if your graph can be colored with three colors or if four are needed, and you will see examples of colorings for both cases. This will help you make an informed decision.</p>
+            <p>In addition, the algorithm allows <strong>optimization</strong>: in most cases, after eliminating problematic structures, only <strong>three colors</strong> are needed. This opens the way to resource savings — fewer frequencies for communication towers, fewer layers in circuit boards, lower costs.</p>
 
-            <p>I believe this tool will help someone save money and resources. Perhaps it will allow installing more communication towers using only three frequencies, or making a circuit board with three layers instead of four.</p>
+            <div class="highlight-box">
+                <strong>Key idea:</strong> in any planar graph, there are only three types of structures that prevent 3-coloring. By eliminating them, we get a 4-coloring (guaranteed) and often a 3-coloring (optimal).
+            </div>
+
+            <p>In the <a href="demo.html">Demo</a> section, you will be able to upload your own graph and see the algorithm in action. You will get a ready-made 4-coloring, and also find out if three colors are enough in your case.</p>
+
+            <p>I believe this tool will help not only to verify the theorem, but also to apply it in practice — in network design, microelectronics, planning, and other fields.</p>
         </div>
 
     </div>
