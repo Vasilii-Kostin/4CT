@@ -90,6 +90,10 @@
             border-left-color: #2e7d32;
             background: #f0f8f0;
         }
+        .highlight-box.definition {
+            border-left-color: #0066cc;
+            background: #f0f4ff;
+        }
         .structure-types {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -145,6 +149,16 @@
         }
         .conflict-type strong {
             color: #cc5500;
+        }
+        .chain-definition {
+            background: #f0f4ff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #c0d4f0;
+            margin: 1rem 0;
+        }
+        .chain-definition p {
+            margin: 0.5rem 0;
         }
         @media (max-width: 650px) {
             .two-columns {
@@ -202,9 +216,26 @@
             </p>
             
             <div class="highlight-box">
-                <strong>Фундаментальное свойство:</strong> В любой триангуляции существуют <strong>только три базовых типа</strong> 
-                структур, вынуждающих четвёртый цвет. Все они являются <strong>конечными</strong> и могут быть 
-                обнаружены алгоритмически.
+                <strong>Фундаментальное свойство:</strong> В любой триангуляции существует <strong>один базовый механизм</strong>, 
+                порождающий четвёртый цвет — <strong>цепочка вынужденности</strong>. 
+                K₄ и нечётная звезда являются частными случаями этого механизма.
+            </div>
+
+            <h3>Цепочка вынужденности — основной механизм</h3>
+
+            <div class="chain-definition">
+                <p><strong>Цепочка вынужденности</strong> — это последовательность треугольников, соединённых по общим рёбрам, которая вынуждает вершины принимать строго определённые цвета.</p>
+                
+                <p>При замыкании цепочка соединяет две вершины. Возникает конфликт одного из двух типов:</p>
+                
+                <ul>
+                    <li><strong>Тип A:</strong> структура графа требует, чтобы вершины были <strong>разного</strong> цвета (например, соединены ребром), но цепочка вынуждает их быть <strong>одного</strong> цвета.</li>
+                    <li><strong>Тип B:</strong> структура графа требует, чтобы вершины были <strong>одного</strong> цвета (например, два луча чётной звезды), но цепочка вынуждает их быть <strong>разных</strong> цветов.</li>
+                </ul>
+                
+                <p>Оба конфликта требуют четвёртого цвета.</p>
+                
+                <p><strong>K₄ и нечётная звезда являются частными случаями этих двух типов конфликтов.</strong></p>
             </div>
 
             <h3>Типы островов</h3>
@@ -221,7 +252,7 @@
                         <li><strong>Структура:</strong> 4 вершины, 6 рёбер</li>
                         <li><strong>Вынужденный цвет:</strong> Все 4 вершины должны иметь разные цвета</li>
                         <li><strong>Пример:</strong> Тетраэдр, клика размера 4</li>
-                        <li><strong>Особенность:</strong> Минимальная не-3-раскрашиваемая структура</li>
+                        <li><strong>Особенность:</strong> Частный случай цепочки вынужденности (тип A)</li>
                     </ul>
                 </div>
 
@@ -236,21 +267,21 @@
                         <li><strong>Структура:</strong> Центр + нечётный цикл (3, 5, 7, ... вершин)</li>
                         <li><strong>Вынужденный цвет:</strong> Центр получает один цвет, цикл чередует два других</li>
                         <li><strong>Пример:</strong> Звезда с центром и треугольником, пятиугольником и т.д.</li>
-                        <li><strong>Особенность:</strong> Явная структура, видимая непосредственно в графе</li>
+                        <li><strong>Особенность:</strong> Частный случай цепочки вынужденности (тип B)</li>
                     </ul>
                 </div>
 
-                <!-- Тип III: Цепочка вынужденности (исправлено) -->
+                <!-- Тип III: Цепочка вынужденности -->
                 <div class="structure-card">
                     <h4>
                         <span class="badge badge-chain">Тип III</span>
                         Цепочка вынужденности
                     </h4>
-                    <p><strong>Описание:</strong> Последовательность треугольников, соединённых по общим рёбрам.</p>
+                    <p><strong>Описание:</strong> Общий случай — последовательность треугольников, соединённых по общим рёбрам.</p>
                     <ul>
                         <li><strong>Структура:</strong> Треугольники, соединённые в цепочку</li>
-                        <li><strong>Вынужденный цвет:</strong> Треугольники вынуждают вершины принимать строго определённые цвета, и при замыкании цепочки возникает конфликт</li>
-                        <li><strong>Пример:</strong> Последовательность треугольников, где первый и последний соединены</li>
+                        <li><strong>Вынужденный цвет:</strong> Вершины принимают строго определённые цвета</li>
+                        <li><strong>Пример:</strong> Длинная цепочка треугольников, замыкающаяся с конфликтом</li>
                         <li><strong>Особенность:</strong> Может проходить по всему графу, не имея выделенного центра</li>
                     </ul>
                 </div>
@@ -263,9 +294,9 @@
                     </h4>
                     <p><strong>Описание:</strong> Пересекающиеся, вложенные или соединённые структуры.</p>
                     <ul>
-                        <li><strong>Структура:</strong> K₄ + звёзды, звёзды + цепочки, несколько цепочек</li>
+                        <li><strong>Структура:</strong> Несколько цепочек, звёзд, K₄</li>
                         <li><strong>Вынужденный цвет:</strong> Суммарный эффект всех структур</li>
-                        <li><strong>Пример:</strong> K₄ с прикреплёнными звёздами</li>
+                        <li><strong>Пример:</strong> K₄ с прикреплёнными цепочками</li>
                         <li><strong>Особенность:</strong> Могут требовать разбиения нескольких рёбер</li>
                     </ul>
                 </div>
@@ -276,7 +307,7 @@
                 Всё, что не входит в острова, называется <strong>морем</strong>. Море обладает важным свойством:
             </p>
             <ul>
-                <li><strong>Не содержит</strong> K₄, нечётных звёзд или цепочек вынужденности</li>
+                <li><strong>Не содержит</strong> цепочек вынужденности (а значит, и K₄, и нечётных звёзд)</li>
                 <li><strong>Всегда</strong> может быть раскрашено <strong>тремя цветами</strong></li>
                 <li>Раскраска моря <strong>детерминирована</strong> и не требует перебора</li>
                 <li>Раскраска адаптируется под границы островов</li>
@@ -286,21 +317,17 @@
                 а остальная часть графа раскрашивается тривиально.
             </p>
 
-            <h3>Почему только три типа?</h3>
+            <h3>Почему это работает?</h3>
             <p>
-                Доказано, что в любой триангуляции <strong>единственные</strong> конфигурации, вынуждающие четвёртый цвет:
-            </p>
-            <ol>
-                <li><strong>K₄</strong> — полный граф на 4 вершинах</li>
-                <li><strong>Нечётная звезда</strong> — центр + нечётный цикл</li>
-                <li><strong>Цепочка вынужденности</strong> — последовательность треугольников, создающих конфликт при замыкании</li>
-            </ol>
-            <p>
-                Все остальные структуры являются <strong>комбинациями</strong> этих трёх базовых типов.
+                В любой триангуляции <strong>единственный</strong> механизм, порождающий четвёртый цвет — это цепочка вынужденности.
             </p>
             <p>
-                Если триангуляция не содержит таких структур, она 3-раскрашиваема. 
-                Это доказывается индукцией с анализом чередующихся цепочек и замыканий.
+                K₄ — это частный случай, где цепочка замыкается на ребро (тип A).<br>
+                Нечётная звезда — это частный случай, где цепочка замыкается на лучи (тип B).
+            </p>
+            <p>
+                Если триангуляция не содержит цепочек вынужденности, она 3-раскрашиваема. 
+                Это доказывается индукцией: в отсутствие цепочек всегда найдётся вершина, которую можно удалить, не нарушив 3-раскрашиваемость.
             </p>
 
             <h3>Два типа конфликтов в цепочке вынужденности</h3>
@@ -311,15 +338,15 @@
                 <div class="conflict-type">
                     <strong>Тип A:</strong> Разные цвета
                     <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
-                        Вершина в конце должна иметь <strong>другой</strong> цвет, чем в начале.
-                        <br><em>Пример:</em> цепочка соединяет вершины, которые должны быть разного цвета (ребро).
+                        Структура требует <strong>разных</strong> цветов, цепочка вынуждает <strong>одинаковый</strong>.
+                        <br><em>Пример:</em> ребро между вершинами, но цепочка говорит, что они одного цвета.
                     </p>
                 </div>
                 <div class="conflict-type">
                     <strong>Тип B:</strong> Одинаковые цвета
                     <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
-                        Вершина в конце должна иметь <strong>такой же</strong> цвет, как в начале.
-                        <br><em>Пример:</em> цепочка замыкается на ту же вершину, но по логике должна дать другой цвет.
+                        Структура требует <strong>одинакового</strong> цвета, цепочка вынуждает <strong>разные</strong>.
+                        <br><em>Пример:</em> лучи чётной звезды, но цепочка говорит, что они разных цветов.
                     </p>
                 </div>
             </div>
@@ -332,7 +359,7 @@
                 Алгоритм работает следующим образом:
             </p>
             <ol>
-                <li><strong>Обнаружение:</strong> Находит все K₄, нечётные звёзды и цепочки вынужденности</li>
+                <li><strong>Обнаружение:</strong> Находит все цепочки вынужденности (и, как следствие, все K₄ и нечётные звёзды)</li>
                 <li><strong>Анализ:</strong> Строит таблицу участия рёбер в структурах</li>
                 <li><strong>Разбиение:</strong> Выбирает рёбра с максимальной суммой участия и разбивает их</li>
                 <li><strong>Повторение:</strong> После разбиения структуры перестраиваются</li>
@@ -346,8 +373,8 @@
             <h3>Теорема о конечности</h3>
             <div class="highlight-box success">
                 <strong>Теорема:</strong> Любой не-3-раскрашиваемый планарный граф содержит конечный набор 
-                структур типа K₄, нечётных звёзд и цепочек вынужденности. 
-                Разбиение рёбер этих структур приводит к 3-раскрашиваемому графу.
+                цепочек вынужденности (включая K₄ и нечётные звёзды как частные случаи). 
+                Разбиение рёбер этих цепочек приводит к 3-раскрашиваемому графу.
             </div>
             <p>
                 Это означает, что:
@@ -364,9 +391,7 @@
                     <li><strong>Построить базовую сетку</strong> вокруг вершин графа</li>
                     <li><strong>Провести рёбра</strong> с расщеплением, сохраняя триангуляцию</li>
                     <li><strong>Стянуть лишние вершины</strong></li>
-                    <li><strong>Найти все K₄</strong> — полные графы на 4 вершинах</li>
-                    <li><strong>Найти все нечётные звёзды</strong> — центр + нечётный цикл</li>
-                    <li><strong>Найти все цепочки вынужденности</strong> — последовательности треугольников, создающих конфликт при замыкании</li>
+                    <li><strong>Найти все цепочки вынужденности</strong> (включая K₄ и нечётные звёзды)</li>
                     <li><strong>Построить таблицу участия</strong> рёбер в найденных структурах</li>
                     <li><strong>Последовательно разбивать</strong> рёбра с максимальной суммой участия</li>
                     <li><strong>После уничтожения всех структур</strong> — раскрасить море тремя цветами</li>
@@ -385,12 +410,12 @@
                     При замыкании цепочки возникает конфликт одного из двух типов:
                 </p>
                 <ul style="margin: 0.3rem 0 0 1.2rem;">
-                    <li><strong>Тип A:</strong> вершина в конце должна иметь <strong>другой</strong> цвет, чем в начале</li>
-                    <li><strong>Тип B:</strong> вершина в конце должна иметь <strong>такой же</strong> цвет, как в начале</li>
+                    <li><strong>Тип A:</strong> цепочка вынуждает <strong>одинаковый</strong> цвет, но структура требует <strong>разные</strong></li>
+                    <li><strong>Тип B:</strong> цепочка вынуждает <strong>разные</strong> цвета, но структура требует <strong>одинаковый</strong></li>
                 </ul>
                 <p style="margin: 0.3rem 0 0 0;">
                     У цепочки <strong>нет выделенного центра</strong> — она может проходить по всему графу.
-                    Цепочка не является «скрытой нечётной звездой»; это самостоятельный тип структуры.
+                    K₄ и нечётная звезда — это частные случаи цепочки вынужденности.
                 </p>
             </div>
 
@@ -433,8 +458,26 @@
             </p>
             
             <div class="highlight-box">
-                <strong>Fundamental property:</strong> In any triangulation, there are only <strong>three basic types</strong> 
-                of structures that force a fourth color. All of them are <strong>finite</strong> and can be detected algorithmically.
+                <strong>Fundamental property:</strong> In any triangulation, there is <strong>one basic mechanism</strong> 
+                that generates the fourth color — the <strong>forced chain</strong>. 
+                K₄ and odd stars are special cases of this mechanism.
+            </div>
+
+            <h3>Forced Chain — The Core Mechanism</h3>
+
+            <div class="chain-definition">
+                <p><strong>A forced chain</strong> is a sequence of triangles connected by common edges that forces vertices to take strictly defined colors.</p>
+                
+                <p>When the chain closes, it connects two vertices. A conflict of one of two types arises:</p>
+                
+                <ul>
+                    <li><strong>Type A:</strong> the graph structure requires the vertices to have <strong>different</strong> colors (e.g., they are connected by an edge), but the chain forces them to have the <strong>same</strong> color.</li>
+                    <li><strong>Type B:</strong> the graph structure requires the vertices to have the <strong>same</strong> color (e.g., two rays of an even star), but the chain forces them to have <strong>different</strong> colors.</li>
+                </ul>
+                
+                <p>Both conflicts require a fourth color.</p>
+                
+                <p><strong>K₄ and odd stars are special cases of these two types of conflicts.</strong></p>
             </div>
 
             <h3>Types of Islands</h3>
@@ -451,7 +494,7 @@
                         <li><strong>Structure:</strong> 4 vertices, 6 edges</li>
                         <li><strong>Forced color:</strong> All 4 vertices must have different colors</li>
                         <li><strong>Example:</strong> Tetrahedron, clique of size 4</li>
-                        <li><strong>Feature:</strong> Minimal non-3-colorable structure</li>
+                        <li><strong>Feature:</strong> Special case of forced chain (Type A)</li>
                     </ul>
                 </div>
 
@@ -466,21 +509,21 @@
                         <li><strong>Structure:</strong> Center + odd cycle (3, 5, 7, ... vertices)</li>
                         <li><strong>Forced color:</strong> Center gets one color, cycle alternates two others</li>
                         <li><strong>Example:</strong> Star with center and triangle, pentagon, etc.</li>
-                        <li><strong>Feature:</strong> Explicit structure, visible directly in the graph</li>
+                        <li><strong>Feature:</strong> Special case of forced chain (Type B)</li>
                     </ul>
                 </div>
 
-                <!-- Type III: Forced Chain (corrected) -->
+                <!-- Type III: Forced Chain -->
                 <div class="structure-card">
                     <h4>
                         <span class="badge badge-chain">Type III</span>
                         Forced Chain
                     </h4>
-                    <p><strong>Description:</strong> A sequence of triangles connected by common edges.</p>
+                    <p><strong>Description:</strong> The general case — a sequence of triangles connected by common edges.</p>
                     <ul>
                         <li><strong>Structure:</strong> Triangles connected in a chain</li>
-                        <li><strong>Forced color:</strong> Triangles force vertices to have strictly defined colors, and when the chain closes, a conflict arises</li>
-                        <li><strong>Example:</strong> A sequence of triangles where the first and last are connected</li>
+                        <li><strong>Forced color:</strong> Vertices take strictly defined colors</li>
+                        <li><strong>Example:</strong> A long chain of triangles that closes with a conflict</li>
                         <li><strong>Feature:</strong> Can traverse the entire graph without having a distinguished center</li>
                     </ul>
                 </div>
@@ -493,9 +536,9 @@
                     </h4>
                     <p><strong>Description:</strong> Intersecting, nested, or connected structures.</p>
                     <ul>
-                        <li><strong>Structure:</strong> K₄ + stars, stars + chains, multiple chains</li>
+                        <li><strong>Structure:</strong> Multiple chains, stars, K₄</li>
                         <li><strong>Forced color:</strong> Combined effect of all structures</li>
-                        <li><strong>Example:</strong> K₄ with attached stars</li>
+                        <li><strong>Example:</strong> K₄ with attached chains</li>
                         <li><strong>Feature:</strong> May require splitting multiple edges</li>
                     </ul>
                 </div>
@@ -506,7 +549,7 @@
                 Everything that is not an island is called the <strong>sea</strong>. The sea has important properties:
             </p>
             <ul>
-                <li><strong>Contains no</strong> K₄, odd stars, or forced chains</li>
+                <li><strong>Contains no</strong> forced chains (and therefore no K₄ or odd stars)</li>
                 <li><strong>Always</strong> can be colored with <strong>three colors</strong></li>
                 <li>Coloring is <strong>deterministic</strong> and requires no backtracking</li>
                 <li>Coloring adapts to island boundaries</li>
@@ -516,21 +559,17 @@
                 while the rest of the graph is colored trivially.
             </p>
 
-            <h3>Why only three types?</h3>
+            <h3>Why does it work?</h3>
             <p>
-                It is proven that in any triangulation, the <strong>only</strong> configurations that force a fourth color are:
-            </p>
-            <ol>
-                <li><strong>K₄</strong> — complete graph on 4 vertices</li>
-                <li><strong>Odd star</strong> — center + odd cycle</li>
-                <li><strong>Forced chain</strong> — a sequence of triangles that creates a conflict upon closure</li>
-            </ol>
-            <p>
-                All other structures are <strong>combinations</strong> of these three basic types.
+                In any triangulation, the <strong>only</strong> mechanism that generates the fourth color is the forced chain.
             </p>
             <p>
-                If a triangulation contains no such structures, it is 3-colorable. 
-                This is proved by induction with an analysis of alternating chains and closures.
+                K₄ is a special case where the chain closes on an edge (Type A).<br>
+                An odd star is a special case where the chain closes on rays (Type B).
+            </p>
+            <p>
+                If a triangulation contains no forced chains, it is 3-colorable. 
+                This is proved by induction: in the absence of forced chains, there is always a vertex that can be removed without breaking 3-colorability.
             </p>
 
             <h3>Two types of conflicts in a forced chain</h3>
@@ -541,15 +580,15 @@
                 <div class="conflict-type">
                     <strong>Type A:</strong> Different colors
                     <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
-                        The vertex at the end must have a <strong>different</strong> color than at the beginning.
-                        <br><em>Example:</em> the chain connects vertices that must have different colors (an edge).
+                        Structure requires <strong>different</strong> colors, chain forces <strong>same</strong>.
+                        <br><em>Example:</em> an edge between vertices, but the chain says they are the same color.
                     </p>
                 </div>
                 <div class="conflict-type">
                     <strong>Type B:</strong> Same colors
                     <p style="margin: 0.3rem 0 0 0; font-size: 0.95rem;">
-                        The vertex at the end must have the <strong>same</strong> color as at the beginning.
-                        <br><em>Example:</em> the chain closes on the same vertex, but logically should give a different color.
+                        Structure requires <strong>same</strong> color, chain forces <strong>different</strong>.
+                        <br><em>Example:</em> rays of an even star, but the chain says they are different colors.
                     </p>
                 </div>
             </div>
@@ -562,7 +601,7 @@
                 The algorithm works as follows:
             </p>
             <ol>
-                <li><strong>Detection:</strong> Finds all K₄, odd stars, and forced chains</li>
+                <li><strong>Detection:</strong> Finds all forced chains (and consequently all K₄ and odd stars)</li>
                 <li><strong>Analysis:</strong> Builds edge participation table for structures</li>
                 <li><strong>Splitting:</strong> Selects edges with maximum total participation and splits them</li>
                 <li><strong>Repeat:</strong> After splitting, structures are rebuilt</li>
@@ -575,8 +614,8 @@
 
             <h3>Finiteness Theorem</h3>
             <div class="highlight-box success">
-                <strong>Theorem:</strong> Any non-3-colorable planar graph contains a finite set of structures 
-                of types K₄, odd stars, and forced chains. Splitting the edges of these structures leads to a 3-colorable graph.
+                <strong>Theorem:</strong> Any non-3-colorable planar graph contains a finite set of forced chains 
+                (including K₄ and odd stars as special cases). Splitting the edges of these chains leads to a 3-colorable graph.
             </div>
             <p>
                 This means that:
@@ -593,9 +632,7 @@
                     <li><strong>Build the base grid</strong> around the vertices of the graph</li>
                     <li><strong>Draw the edges</strong> with splitting, preserving the triangulation</li>
                     <li><strong>Contract extra vertices</strong></li>
-                    <li><strong>Find all K₄</strong> — complete graphs on 4 vertices</li>
-                    <li><strong>Find all odd stars</strong> — center + odd cycle</li>
-                    <li><strong>Find all forced chains</strong> — sequences of triangles that create a conflict upon closure</li>
+                    <li><strong>Find all forced chains</strong> (including K₄ and odd stars)</li>
                     <li><strong>Build the edge participation table</strong> for the found structures</li>
                     <li><strong>Sequentially split</strong> edges with maximum total participation</li>
                     <li><strong>After all structures are destroyed</strong> — color the sea with three colors</li>
@@ -614,30 +651,11 @@
                     When the chain closes, a conflict of one of two types arises:
                 </p>
                 <ul style="margin: 0.3rem 0 0 1.2rem;">
-                    <li><strong>Type A:</strong> the vertex at the end must have a <strong>different</strong> color than at the beginning</li>
-                    <li><strong>Type B:</strong> the vertex at the end must have the <strong>same</strong> color as at the beginning</li>
+                    <li><strong>Type A:</strong> the chain forces <strong>same</strong> color, but the structure requires <strong>different</strong></li>
+                    <li><strong>Type B:</strong> the chain forces <strong>different</strong> colors, but the structure requires <strong>same</strong></li>
                 </ul>
                 <p style="margin: 0.3rem 0 0 0;">
                     The chain <strong>has no distinguished center</strong> — it can traverse the entire graph.
-                    The chain is not a "hidden odd star"; it is an independent type of structure.
+                    K₄ and odd stars are special cases of the forced chain.
                 </p>
-            </div>
-
-            <p style="margin-top: 2rem;">
-                The full proof and algorithm description are available in the preprint on Zenodo:
-            </p>
-            <a href="https://zenodo.org/records/19709823" target="_blank" class="pdf-link">
-                📄 Read the full paper (PDF, Zenodo)
-            </a>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #555;">
-                DOI: 10.5281/zenodo.19709823
-            </p>
-        </div>
-
-    </div>
-
-    <!-- Подключаем меню и подвал -->
-    <script src="menu.js"></script>
-
-</body>
-</html>
+            </
