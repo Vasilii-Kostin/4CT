@@ -2,12 +2,182 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4CT — Four Color Theorem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+        }
+        .lang-section {
+            margin: 1.5rem 0;
+        }
+        .lang-section h2 {
+            font-size: 1.3rem;
+            border-left: 4px solid #2c3e50;
+            padding-left: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .lang-section p {
+            margin: 0.8rem 0;
+        }
+        .lang-section ul {
+            padding-left: 1.2rem;
+        }
+        .lang-section li {
+            margin-bottom: 0.4rem;
+        }
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2c3e50;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .pdf-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .pdf-link:hover {
+            background: #1a2a3a;
+        }
+        @media (max-width: 650px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+            .lang-section h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Здесь весь контент страницы (приветствие, текст) -->
 
-    <!-- Подключаем меню и подвал -->
+    <h1>4CT — Four Color Theorem</h1>
+
+    <!-- ===== РУССКАЯ ВЕРСИЯ ===== -->
+    <div class="lang-section" id="ru">
+        <h2>🇷🇺 Добро пожаловать</h2>
+        <p>
+            Это проект, посвящённый <strong>конструктивному доказательству теоремы о четырёх красках</strong> 
+            и явному алгоритму раскраски планарных графов.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Что здесь есть?</strong>
+            <ul>
+                <li><strong>Теория</strong> — краткое изложение доказательства, основанного на цепочках вынужденности.</li>
+                <li><strong>Демонстрация</strong> — работающий алгоритм, который раскрашивает графы в 4 цвета.</li>
+                <li><strong>Статья</strong> — полный текст доказательства (PDF, Zenodo).</li>
+            </ul>
+        </div>
+
+        <p>
+            Проект показывает, что теорема о четырёх красках — это не только существование, но и 
+            <strong>конструктивный процесс</strong>, который можно объяснить и выполнить вручную.
+        </p>
+
+        <p>
+            📄 Полная статья на Zenodo: 
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank">
+                https://doi.org/10.5281/zenodo.21514884
+            </a>
+        </p>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #555;">
+            🧭 Навигация — в меню сверху.
+        </p>
+    </div>
+
+    <!-- ===== АНГЛИЙСКАЯ ВЕРСИЯ ===== -->
+    <div class="lang-section" id="en" style="display: none;">
+        <h2>🇬🇧 Welcome</h2>
+        <p>
+            This project is dedicated to a <strong>constructive proof of the Four Color Theorem</strong> 
+            and an explicit algorithm for coloring planar graphs.
+        </p>
+
+        <div class="highlight-box">
+            <strong>What is here?</strong>
+            <ul>
+                <li><strong>Theory</strong> — a brief outline of the proof based on forced chains.</li>
+                <li><strong>Demo</strong> — a working algorithm that colors graphs with 4 colors.</li>
+                <li><strong>Paper</strong> — the full proof (PDF, Zenodo).</li>
+            </ul>
+        </div>
+
+        <p>
+            The project shows that the Four Color Theorem is not just about existence, but a 
+            <strong>constructive process</strong> that can be explained and performed manually.
+        </p>
+
+        <p>
+            📄 Full paper on Zenodo: 
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank">
+                https://doi.org/10.5281/zenodo.21514884
+            </a>
+        </p>
+
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #555;">
+            🧭 Navigation — in the menu above.
+        </p>
+    </div>
+
+    <!-- Подключаем меню -->
     <script src="menu.js"></script>
+
+    <!-- Переключатель языка (добавляем кнопку внизу, если меню не видно) -->
+    <div style="margin-top: 2rem; text-align: center; font-size: 0.9rem;">
+        <a href="#" id="langSwitchBottom" style="color: #0066cc; text-decoration: none; font-weight: 500;">
+            🇬🇧 English / 🇷🇺 Русский
+        </a>
+    </div>
+
+    <script>
+        // Определяем текущий язык
+        let currentLang = 'ru';
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('lang')) {
+            currentLang = urlParams.get('lang');
+            localStorage.setItem('4ct_lang', currentLang);
+        } else if (localStorage.getItem('4ct_lang')) {
+            currentLang = localStorage.getItem('4ct_lang');
+        } else {
+            const browserLang = navigator.language || navigator.languages?.[0] || 'ru';
+            if (browserLang.startsWith('en')) {
+                currentLang = 'en';
+            }
+        }
+
+        // Показываем нужную версию
+        document.getElementById('ru').style.display = currentLang === 'ru' ? 'block' : 'none';
+        document.getElementById('en').style.display = currentLang === 'en' ? 'block' : 'none';
+
+        // Кнопка переключения языка (внизу страницы)
+        document.getElementById('langSwitchBottom').addEventListener('click', function(e) {
+            e.preventDefault();
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
+            localStorage.setItem('4ct_lang', newLang);
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', newLang);
+            window.location.href = url.toString();
+        });
+    </script>
+
 </body>
 </html>
