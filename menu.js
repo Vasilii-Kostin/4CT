@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     nav.innerHTML = `
         <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">🏠 4CT</a>
-        <a href="about.html" style="color: #ecf0f1; text-decoration: none;">О проекте</a>
-        <a href="theory.html" style="color: #ecf0f1; text-decoration: none;">Теория</a>
-        <a href="demo.html" style="color: #ecf0f1; text-decoration: none;">Демонстрация</a>
-        <a href="contacts.html" style="color: #ecf0f1; text-decoration: none;">Контакты</a>
+        <a href="about.html" style="color: #ecf0f1; text-decoration: none;">About</a>
+        <a href="theory.html" style="color: #ecf0f1; text-decoration: none;">Theory</a>
+        <a href="demo.html" style="color: #ecf0f1; text-decoration: none;">Demo</a>
+        <a href="contacts.html" style="color: #ecf0f1; text-decoration: none;">Contacts</a>
     `;
 
     // Вставляем меню в самое начало body
