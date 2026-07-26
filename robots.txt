@@ -1,0 +1,11 @@
+# Разрешаем всем поисковикам индексировать сайт
+User-agent: *
+Allow: /
+
+# Запрещаем индексировать служебные папки (если хотите)
+Disallow: /images/
+Disallow: /structures_images/
+Disallow: /logs/
+
+# Указываем путь к карте сайта
+Sitemap: https://vasilii-kostin.github.io/4CT/sitemap.xml
