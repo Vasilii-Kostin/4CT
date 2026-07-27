@@ -16,6 +16,11 @@
             line-height: 1.7;
             color: #1a1a1a;
         }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
         h1 {
             font-size: 2rem;
             border-bottom: 2px solid #2c3e50;
@@ -73,8 +78,8 @@
         }
         .structure-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             margin: 1.5rem 0;
         }
         .structure-card {
@@ -111,20 +116,6 @@
         tr:nth-child(even) {
             background: #f8f9fa;
         }
-        .code-block {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .code-block .keyword { color: #569cd6; }
-        .code-block .string { color: #ce9178; }
-        .code-block .comment { color: #6a9955; }
-        .code-block .function { color: #dcdcaa; }
         .btn {
             display: inline-block;
             background: #2c3e50;
@@ -143,20 +134,33 @@
         .btn-gallery:hover {
             background: #1b5e20;
         }
+        .btn-demo {
+            background: #c0392b;
+        }
+        .btn-demo:hover {
+            background: #922b21;
+        }
         @media (max-width: 650px) {
             .two-columns {
                 flex-direction: column;
                 gap: 0.5rem;
-            }
-            .structure-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>🧩 Разбор примера: граф на 35 вершин</h1>
+    <h1>🧩 Разбор примера / Example Walkthrough</h1>
+
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- РУССКАЯ ВЕРСИЯ -->
+    <!-- ============================================================ -->
+
+    <h2>🇷🇺 Русский</h2>
 
     <p>
         Здесь показана работа алгоритма на конкретном планарном графе из 35 вершин и 95 рёбер.
@@ -172,8 +176,8 @@
     <h2>1. Исходный граф</h2>
 
     <div class="center-image">
-        <img src="images/graph_35_03_20260726_180203_original.png" alt="Исходный граф 35 вершин" style="max-width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-        <div class="caption">Исходный граф: 35 вершин, 95 рёбер</div>
+        <img src="images/graph_35_03_20260726_180203_original.png" alt="Исходный граф 35 вершин">
+        <div class="caption">Исходный граф: 35 вершин, 95 рёбер / Original graph: 35 vertices, 95 edges</div>
     </div>
 
     <!-- ============================================================ -->
@@ -190,31 +194,32 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Тип</th>
-                        <th>Количество</th>
+                        <th>Тип / Type</th>
+                        <th>Количество / Count</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>K₄ (полный граф)</td><td>1</td></tr>
-                    <tr><td>Нечётные звёзды</td><td>12</td></tr>
-                    <tr><td>Цепочки вынужденности</td><td>93</td></tr>
-                    <tr><td><strong>Уникальных конфликтов</strong></td><td><strong>95</strong></td></tr>
+                    <tr><td>K₄ (полный граф / complete graph)</td><td>1</td></tr>
+                    <tr><td>Нечётные звёзды / Odd stars</td><td>12</td></tr>
+                    <tr><td>Цепочки вынужденности / Forced chains</td><td>93</td></tr>
+                    <tr><td><strong>Уникальных конфликтов / Unique conflicts</strong></td><td><strong>95</strong></td></tr>
                 </tbody>
             </table>
         </div>
         <div class="column">
-            <h3>🔍 Пример цепочки C₉₀</h3>
+            <h3>🔍 Пример цепочки C₉₀ / Example chain C₉₀</h3>
             <div style="background: #f0f4ff; padding: 0.8rem 1rem; border-radius: 6px; font-size: 0.95rem;">
-                <strong>Цепочка #90:</strong> старт 1<br>
-                Вершин: 19, треугольников: 19<br>
+                <strong>Цепочка #90 / Chain #90:</strong> старт / start 1<br>
+                Вершин: 19, треугольников: 19 / Vertices: 19, triangles: 19<br>
                 Конфликт: вершины <strong>29 и 10</strong> имеют одинаковый цвет 2,<br>
-                но между ними есть ребро!<br>
-                <span style="color: #cc5500;">⚠️ КОНФЛИКТ!</span>
+                но между ними есть ребро! / Conflict: vertices <strong>29 and 10</strong> have the same color 2,<br>
+                but there is an edge between them!<br>
+                <span style="color: #cc5500;">⚠️ КОНФЛИКТ! / CONFLICT!</span>
             </div>
         </div>
     </div>
 
-    <h3>🖼️ Примеры структур</h3>
+    <h3>🖼️ Примеры структур / Structure examples</h3>
     <p>Ниже показаны три ключевые структуры, найденные в графе: K₄, нечётная звезда и цепочка вынужденности.</p>
 
     <div class="structure-grid">
@@ -222,27 +227,27 @@
             <img src="structures_images/graph_35_03_20260726_180331_K4_1.png" alt="K4">
             <div class="card-body">
                 <span class="label">🔺 K₄</span> — полный граф на 4 вершинах.<br>
-                <span style="font-size:0.9rem; color:#555;">Вершины: [1, 6, 22, 25]</span>
+                <span style="font-size:0.9rem; color:#555;">Вершины: [1, 6, 22, 25] / Vertices: [1, 6, 22, 25]</span>
             </div>
         </div>
         <div class="structure-card">
             <img src="structures_images/graph_35_03_20260726_180331_S_2.png" alt="Нечётная звезда S_2">
             <div class="card-body">
-                <span class="label">⭐ Нечётная звезда S₂</span> — центр 4 с циклом из 7 вершин.<br>
-                <span style="font-size:0.9rem; color:#555;">Вершины цикла: [5, 7, 8, 13, 24, 29, 33]</span>
+                <span class="label">⭐ Нечётная звезда S₂ / Odd star S₂</span> — центр 4 с циклом из 7 вершин.<br>
+                <span style="font-size:0.9rem; color:#555;">Вершины цикла: [5, 7, 8, 13, 24, 29, 33] / Cycle vertices: [5, 7, 8, 13, 24, 29, 33]</span>
             </div>
         </div>
         <div class="structure-card">
             <img src="structures_images/graph_35_03_20260726_180359_C_90_segment.png" alt="Цепочка C_90">
             <div class="card-body">
-                <span class="label">🔗 Цепочка C₉₀</span> — сегмент конфликта (18 треугольников).<br>
-                <span style="font-size:0.9rem; color:#555;">Конфликт: 29-10 (цвет 2)</span>
+                <span class="label">🔗 Цепочка C₉₀ / Chain C₉₀</span> — сегмент конфликта (18 треугольников).<br>
+                <span style="font-size:0.9rem; color:#555;">Конфликт: 29-10 (цвет 2) / Conflict: 29-10 (color 2)</span>
             </div>
         </div>
     </div>
 
     <!-- ============================================================ -->
-    <h2>3. Итерации разбиения</h2>
+    <h2>3. Итерации разбиения / Splitting iterations</h2>
 
     <p>
         Алгоритм последовательно разбивал рёбра, чтобы уничтожить цепочки вынужденности.
@@ -308,7 +313,7 @@
     </div>
 
     <!-- ============================================================ -->
-    <h2>4. Вершины 4-го цвета</h2>
+    <h2>4. Вершины 4-го цвета / Color 4 vertices</h2>
 
     <p>
         Для устранения цепочек вынужденности алгоритм выделил <strong>7 вершин</strong>, которые получают четвёртый цвет.
@@ -316,65 +321,65 @@
     </p>
 
     <div class="center-image">
-        <img src="images/graph_35_03_20260726_182825_color4_vertices.png" alt="Вершины 4-го цвета" style="max-width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-        <div class="caption">Вершины 4-го цвета: <strong>[0, 5, 12, 15, 18, 25, 34]</strong> (фиолетовые)</div>
+        <img src="images/graph_35_03_20260726_182825_color4_vertices.png" alt="Вершины 4-го цвета">
+        <div class="caption">Вершины 4-го цвета: <strong>[0, 5, 12, 15, 18, 25, 34]</strong> (фиолетовые) / Color 4 vertices: <strong>[0, 5, 12, 15, 18, 25, 34]</strong> (purple)</div>
     </div>
 
     <!-- ============================================================ -->
-    <h2>5. Финальная раскраска</h2>
+    <h2>5. Финальная раскраска / Final coloring</h2>
 
     <div class="center-image">
-        <img src="images/graph_35_03_20260726_182826_final_colored.png" alt="Раскрашенный граф" style="max-width:100%; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-        <div class="caption">Граф после раскраски: 4 цвета</div>
+        <img src="images/graph_35_03_20260726_182826_final_colored.png" alt="Раскрашенный граф">
+        <div class="caption">Граф после раскраски: 4 цвета / Graph after coloring: 4 colors</div>
     </div>
 
     <div class="highlight-box success">
-        <strong>✅ Результат:</strong> Граф успешно раскрашен в 4 цвета!
+        <strong>✅ Результат / Result:</strong> Граф успешно раскрашен в 4 цвета! / Graph successfully colored with 4 colors!
     </div>
 
     <div class="two-columns">
         <div class="column">
-            <h3>🎨 Цвета</h3>
+            <h3>🎨 Цвета / Colors</h3>
             <ul>
-                <li><span style="color: red; font-weight: bold;">●</span> Цвет 0</li>
-                <li><span style="color: blue; font-weight: bold;">●</span> Цвет 1</li>
-                <li><span style="color: green; font-weight: bold;">●</span> Цвет 2</li>
-                <li><span style="color: purple; font-weight: bold;">●</span> Цвет 3 (4-й цвет)</li>
+                <li><span style="color: red; font-weight: bold;">●</span> Цвет 0 / Color 0</li>
+                <li><span style="color: blue; font-weight: bold;">●</span> Цвет 1 / Color 1</li>
+                <li><span style="color: green; font-weight: bold;">●</span> Цвет 2 / Color 2</li>
+                <li><span style="color: purple; font-weight: bold;">●</span> Цвет 3 (4-й цвет) / Color 3 (4th color)</li>
             </ul>
         </div>
         <div class="column">
-            <h3>📊 Статистика</h3>
+            <h3>📊 Статистика / Statistics</h3>
             <ul>
-                <li><strong>Всего вершин:</strong> 35</li>
-                <li><strong>Вершин 4-го цвета:</strong> 7</li>
-                <li><strong>Вершин 3-х цветов:</strong> 28</li>
-                <li><strong>Всего рёбер:</strong> 95</li>
-                <li><strong>Время работы:</strong> 1586 секунд</li>
+                <li><strong>Всего вершин / Total vertices:</strong> 35</li>
+                <li><strong>Вершин 4-го цвета / Color 4 vertices:</strong> 7</li>
+                <li><strong>Вершин 3-х цветов / Color 1-3 vertices:</strong> 28</li>
+                <li><strong>Всего рёбер / Total edges:</strong> 95</li>
+                <li><strong>Время работы / Runtime:</strong> 1586 секунд / seconds</li>
             </ul>
         </div>
     </div>
 
     <!-- ============================================================ -->
-    <h2>6. Все изображения</h2>
+    <h2>6. Все изображения / All images</h2>
 
     <p>
         Полный набор изображений доступен в двух папках:
     </p>
     <ul>
-        <li><strong>📁 images/</strong> — исходный граф, вершины 4-го цвета, финальная раскраска</li>
-        <li><strong>📁 structures_images/</strong> — все 106 структур: K₄, нечётные звёзды, сегменты цепочек</li>
+        <li><strong>📁 images/</strong> — исходный граф, вершины 4-го цвета, финальная раскраска / original graph, color 4 vertices, final coloring</li>
+        <li><strong>📁 structures_images/</strong> — все 106 структур: K₄, нечётные звёзды, сегменты цепочек / all 106 structures: K₄, odd stars, chain segments</li>
     </ul>
 
     <p style="margin-top:1rem;">
-        <a href="structures_images/" class="btn btn-gallery" target="_blank">🖼️ Открыть галерею структур</a>
-        <a href="images/" class="btn" target="_blank">📸 Открыть папку с графами</a>
+        <a href="https://github.com/Vasilii-Kostin/4CT/tree/main/structures_images" class="btn btn-gallery" target="_blank">🖼️ Открыть галерею структур / Open structure gallery</a>
+        <a href="images/" class="btn" target="_blank">📸 Открыть папку с графами / Open graph images</a>
     </p>
 
     <!-- ============================================================ -->
-    <h2>7. Что это доказывает?</h2>
+    <h2>7. Что это доказывает? / What does this prove?</h2>
 
     <div class="highlight-box success">
-        <strong>🧠 Главный вывод:</strong>
+        <strong>🧠 Главный вывод / Key conclusion:</strong>
         <p style="margin: 0.5rem 0 0 0;">
             Алгоритм находит все цепочки вынужденности, последовательно разбивает их рёбра,
             и в результате граф становится 3-раскрашиваемым. Четвёртый цвет используется только для
@@ -385,11 +390,21 @@
             это цепочки вынужденности. Для любого планарного графа их конечное число, и все они
             могут быть обнаружены и устранены за полиномиальное время.
         </p>
+        <p style="margin: 0.5rem 0 0 0; border-top:1px solid #ddd; padding-top:0.5rem;">
+            The algorithm finds all forced chains, sequentially splits their edges,
+            and the graph becomes 3-colorable. The fourth color is used only for
+            vertices involved in the chains.
+        </p>
+        <p style="margin: 0.5rem 0 0 0;">
+            This shows that the <strong>only reason</strong> for non-3-colorability is
+            forced chains. For any planar graph, their number is finite, and all of them
+            can be detected and eliminated in polynomial time.
+        </p>
     </div>
 
     <p style="margin-top: 2rem; text-align: center;">
-        <a href="theory.html" class="btn">📖 Читать теорию</a>
-        <a href="demo.html" class="btn" style="background: #2e7d32;">🎮 Попробовать демо</a>
+        <a href="theory.html" class="btn">📖 Читать теорию / Read theory</a>
+        <a href="demo.html" class="btn btn-demo">🧪 Подробное тестирование на 10 графах / Detailed testing on 10 graphs</a>
     </p>
 
     <!-- Подключаем меню и подвал -->
