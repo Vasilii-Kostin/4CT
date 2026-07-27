@@ -8,13 +8,12 @@
     <meta name="robots" content="index, follow">
     <title>О проекте — 4CT</title>
     <style>
-        /* общие стили */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #1a1a1a;
         }
         h1 {
@@ -27,14 +26,6 @@
             margin: 1rem 0;
             font-size: 0.9rem;
             color: #555;
-        }
-        .lang-switch a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .lang-switch a:hover {
-            text-decoration: underline;
         }
         .two-columns {
             display: flex;
@@ -51,6 +42,11 @@
             border-bottom: 1px solid #ccc;
             padding-bottom: 0.3rem;
             margin-top: 0;
+        }
+        .column h3 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin-top: 1.5rem;
         }
         .column p {
             margin: 0.8rem 0;
@@ -69,21 +65,38 @@
             margin: 1rem 0;
             border-radius: 4px;
         }
-        .footer-nav {
-            margin-top: 2.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #ddd;
-            font-size: 0.95rem;
+        .highlight-box.green {
+            border-left-color: #2e7d32;
+            background: #f0f8f0;
         }
-        .footer-nav a {
-            color: #0066cc;
+        .highlight-box.orange {
+            border-left-color: #cc5500;
+            background: #fff8f0;
+        }
+        .btn {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
             text-decoration: none;
-            margin-right: 1.2rem;
+            font-weight: 500;
         }
-        .footer-nav a:hover {
-            text-decoration: underline;
+        .btn:hover {
+            background: #1a2a3a;
         }
-        /* для мобильных */
+        .btn-demo {
+            background: #2e7d32;
+        }
+        .btn-demo:hover {
+            background: #1b5e20;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        ul li {
+            margin: 0.4rem 0;
+        }
         @media (max-width: 650px) {
             .two-columns {
                 flex-direction: column;
@@ -94,67 +107,153 @@
 </head>
 <body>
 
-    <h1>О проекте</h1>
+    <h1>О проекте / About</h1>
 
-    <!-- переключатель между колонками — чисто визуальный -->
     <div class="lang-switch">
         <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
     </div>
 
     <div class="two-columns">
 
-        <!-- КОЛОНКА РУССКИЙ -->
+        <!-- ===== РУССКАЯ КОЛОНКА ===== -->
         <div class="column">
             <h2>🇷🇺 Русский</h2>
 
-            <div class="highlight-box">
-                <strong>Главная цель проекта</strong> — построить <strong>конструктивный, человеко-проверяемый мост</strong> между теоремой о четырёх красках и практической реализацией раскраски.
+            <div class="highlight-box green">
+                <strong>🎯 Миссия проекта</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    Сделать теорему о четырёх красках <strong>понятной, видимой и применимой</strong>.
+                    Показать, что 4-цветная раскраска — это не абстрактная теорема, а работающий алгоритм,
+                    который можно запустить на любом графе и увидеть результат.
+                </p>
             </div>
 
-            <p>Теорема о четырёх красках доказана. Она гарантирует, что любую карту (или планарный граф) можно раскрасить четырьмя цветами. Однако классическое доказательство (Аппель и Хакен, 1977) не даёт алгоритма, который можно было бы выполнить вручную или легко запрограммировать.</p>
+            <h3>📖 Откуда взялась идея?</h3>
+            <p>
+                Теорема о четырёх красках была доказана в 1976 году Аппелем и Хакеном с помощью
+                компьютерного перебора 1 936 конфигураций. Это доказательство <strong>не даёт алгоритма</strong>,
+                который можно было бы объяснить человеку или запрограммировать без сложной логики.
+            </p>
+            <p>
+                Я хотел найти <strong>конструктивный путь</strong> — такой, который можно показать на картинках,
+                объяснить словами и реализовать в коде. Так родился этот проект.
+            </p>
 
-            <p><strong>Мой подход</strong> предлагает явный, детерминированный алгоритм, который всегда находит правильную 4-цветную раскраску для любого планарного графа. Алгоритм работает не путём перебора, а через последовательное выявление и устранение структур, требующих четвёртого цвета.</p>
+            <h3>🔍 Что делает этот алгоритм?</h3>
+            <ul>
+                <li><strong>Находит</strong> все структуры, мешающие 3-раскраске (цепочки вынужденности)</li>
+                <li><strong>Показывает</strong> их на графе в виде картинок</li>
+                <li><strong>Устраняет</strong> их, разбивая рёбра</li>
+                <li><strong>Раскрашивает</strong> граф в 4 цвета</li>
+                <li><strong>Оптимизирует</strong> до 3 цветов, где это возможно</li>
+            </ul>
 
-            <p>Это делает <strong>мостик между теорией и практикой</strong>. Теперь инженеры и разработчики могут не просто знать, что 4 цвета достаточно, но и получить готовую раскраску для своего графа, понимая, почему именно так распределились цвета.</p>
-
-            <p>В дополнение к этому, алгоритм даёт возможность <strong>оптимизировать</strong> раскраску: в большинстве случаев после устранения проблемных структур можно обойтись всего <strong>тремя цветами</strong>. Это открывает путь к экономии ресурсов — меньше частот для вышек связи, меньше слоёв в печатных платах, меньше затрат.</p>
-
-            <div class="highlight-box">
-                <strong>Ключевая идея:</strong> в любом планарном графе есть всего три типа структур, которые мешают трёхцветной раскраске. Устраняя их, мы получаем 4-цветную раскраску (гарантированно) и часто — 3-цветную (оптимально).
+            <div class="highlight-box orange">
+                <strong>💡 Важно:</strong> алгоритм не перебирает варианты. Он <strong>анализирует структуру</strong>
+                графа и последовательно устраняет проблемы. Это делает его быстрым и предсказуемым.
             </div>
 
-            <p>В разделе <a href="demo.html">Демонстрация</a> вы сможете загрузить свой граф и увидеть, как работает алгоритм. Вы получите готовую 4-цветную раскраску, а также узнаете, можно ли в вашем случае обойтись тремя цветами.</p>
+            <h3>📊 Что вы получите?</h3>
+            <ul>
+                <li>✅ Готовую 4-цветную раскраску любого планарного графа</li>
+                <li>🖼️ Визуализацию всех найденных структур</li>
+                <li>📈 Понимание, почему граф не раскрашивается в 3 цвета</li>
+                <li>🧩 Возможность оптимизировать до 3 цветов</li>
+            </ul>
 
-            <p>Я верю, что этот инструмент поможет не только проверить теорему, но и применить её на практике — в проектировании сетей, микроэлектронике, планировании и других областях.</p>
+            <h3>🚀 Почему это важно?</h3>
+            <p>
+                Раскраска графов — это не просто математическая задача. Это:
+            </p>
+            <ul>
+                <li><strong>📡 Частоты для вышек связи</strong> — меньше частот → меньше помех</li>
+                <li><strong>🖥️ Микроэлектроника</strong> — меньше слоёв в печатных платах → дешевле</li>
+                <li><strong>🗺️ Картография</strong> — оптимальная раскраска карт</li>
+                <li><strong>📊 Распределение ресурсов</strong> — эффективное планирование</li>
+            </ul>
+
+            <div class="highlight-box green">
+                <strong>🧠 Главная идея:</strong> в любом планарном графе единственная причина,
+                почему 3 цветов недостаточно — это <strong>цепочки вынужденности</strong>.
+                Найди их — и задача решена.
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                <a href="demo.html" class="btn btn-demo">🧪 Посмотреть демонстрацию</a>
+                <a href="example.html" class="btn">📖 Разбор примера</a>
+            </p>
         </div>
 
-        <!-- КОЛОНКА АНГЛИЙСКИЙ -->
+        <!-- ===== АНГЛИЙСКАЯ КОЛОНКА ===== -->
         <div class="column">
             <h2>🇬🇧 English</h2>
 
-            <div class="highlight-box">
-                <strong>The main goal of this project</strong> is to build a <strong>constructive, human-verifiable bridge</strong> between the Four Color Theorem and practical coloring implementation.
+            <div class="highlight-box green">
+                <strong>🎯 Mission</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    To make the Four Color Theorem <strong>understandable, visible, and applicable</strong>.
+                    To show that 4-coloring is not an abstract theorem, but a working algorithm
+                    that can be run on any graph with visible results.
+                </p>
             </div>
 
-            <p>The Four Color Theorem has been proven. It guarantees that any map (or planar graph) can be colored with four colors. However, the classic proof (Appel and Haken, 1977) does not provide an algorithm that can be performed manually or easily programmed.</p>
+            <h3>📖 Where did the idea come from?</h3>
+            <p>
+                The Four Color Theorem was proven in 1976 by Appel and Haken using a computer search
+                of 1,936 configurations. That proof <strong>does not provide an algorithm</strong>
+                that can be explained to a human or easily programmed.
+            </p>
+            <p>
+                I wanted to find a <strong>constructive path</strong> — one that could be shown in pictures,
+                explained in words, and implemented in code. That's how this project was born.
+            </p>
 
-            <p><strong>My approach</strong> offers an explicit, deterministic algorithm that always finds a correct 4-coloring for any planar graph. The algorithm works not by brute force, but by sequentially identifying and eliminating structures that require a fourth color.</p>
+            <h3>🔍 What does this algorithm do?</h3>
+            <ul>
+                <li><strong>Finds</strong> all structures that prevent 3-coloring (forced chains)</li>
+                <li><strong>Shows</strong> them on the graph as images</li>
+                <li><strong>Eliminates</strong> them by splitting edges</li>
+                <li><strong>Colors</strong> the graph with 4 colors</li>
+                <li><strong>Optimizes</strong> to 3 colors where possible</li>
+            </ul>
 
-            <p>This creates a <strong>bridge between theory and practice</strong>. Engineers and developers can now not just know that 4 colors are sufficient, but also obtain a ready-made coloring for their graph, understanding why the colors were distributed that way.</p>
-
-            <p>In addition, the algorithm allows <strong>optimization</strong>: in most cases, after eliminating problematic structures, only <strong>three colors</strong> are needed. This opens the way to resource savings — fewer frequencies for communication towers, fewer layers in circuit boards, lower costs.</p>
-
-            <div class="highlight-box">
-                <strong>Key idea:</strong> in any planar graph, there are only three types of structures that prevent 3-coloring. By eliminating them, we get a 4-coloring (guaranteed) and often a 3-coloring (optimal).
+            <div class="highlight-box orange">
+                <strong>💡 Important:</strong> the algorithm does not use brute force. It <strong>analyzes the structure</strong>
+                of the graph and sequentially eliminates problems. This makes it fast and predictable.
             </div>
 
-            <p>In the <a href="demo.html">Demo</a> section, you will be able to upload your own graph and see the algorithm in action. You will get a ready-made 4-coloring, and also find out if three colors are enough in your case.</p>
+            <h3>📊 What do you get?</h3>
+            <ul>
+                <li>✅ A ready-made 4-coloring of any planar graph</li>
+                <li>🖼️ Visualization of all found structures</li>
+                <li>📈 Understanding why the graph is not 3-colorable</li>
+                <li>🧩 Optimization to 3 colors when possible</li>
+            </ul>
 
-            <p>I believe this tool will help not only to verify the theorem, but also to apply it in practice — in network design, microelectronics, planning, and other fields.</p>
+            <h3>🚀 Why does it matter?</h3>
+            <p>
+                Graph coloring is not just a mathematical problem. It's about:
+            </p>
+            <ul>
+                <li><strong>📡 Communication tower frequencies</strong> — fewer frequencies → less interference</li>
+                <li><strong>🖥️ Microelectronics</strong> — fewer layers in circuit boards → cheaper</li>
+                <li><strong>🗺️ Cartography</strong> — optimal map coloring</li>
+                <li><strong>📊 Resource allocation</strong> — efficient planning</li>
+            </ul>
+
+            <div class="highlight-box green">
+                <strong>🧠 Key idea:</strong> in any planar graph, the only reason
+                why 3 colors are not enough is <strong>forced chains</strong>.
+                Find them — and the problem is solved.
+            </div>
+
+            <p style="margin-top: 1.5rem;">
+                <a href="demo.html" class="btn btn-demo">🧪 View demo</a>
+                <a href="example.html" class="btn">📖 Example walkthrough</a>
+            </p>
         </div>
 
     </div>
-
 
     <!-- Подключаем меню и подвал -->
     <script src="menu.js"></script>
