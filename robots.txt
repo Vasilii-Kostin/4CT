@@ -5,7 +5,8 @@ Allow: /
 # Запрещаем индексировать служебные папки (если хотите)
 Disallow: /images/
 Disallow: /structures_images/
-Disallow: /logs/
+Disallow: /test_of_10_graphs(all_logs__graphs__structures)_600Mb/
+
 
 # Указываем путь к карте сайта
 Sitemap: https://vasilii-kostin.github.io/4CT/sitemap.xml
