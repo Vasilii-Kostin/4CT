@@ -18,7 +18,7 @@ MAX_VERTICES = 100
 MAX_CYCLE_LENGTH = None
 MAX_CYCLES_PER_VERTEX = 0
 DEBUG = False
-MAX_CHAIN_DEPTH = 30  # Ограничиваем глубину поиска до 20 треугольников
+MAX_CHAIN_DEPTH = 20  # Ограничиваем глубину поиска до 20 треугольников
 MAX_CHAINS_TO_FIND = 200  # Ограничиваем количество найденных цепочек
 MAX_START_TRIANGLES = 100  # Ограничение стартовых треугольников (0 = все)
 MAX_CHAINS_TO_DISPLAY = 200  # Сколько цепочек показывать в логе (0 = все)
@@ -1942,7 +1942,7 @@ def main():
     coloring_success = False
     
     try:
-        filename = "graph_35_01.json"
+        filename = "graph_35_03.json"
         if len(sys.argv) > 1:
             filename = sys.argv[1]
         
