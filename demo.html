@@ -41,15 +41,63 @@
             border-left: 4px solid #2c3e50;
             padding-left: 0.8rem;
         }
-        .dev-note {
-            background: #f8f9fa;
-            border-left: 4px solid #ffc107;
+        .highlight-box {
+            background: #f0f8f0;
+            border-left: 4px solid #2e7d32;
             padding: 1rem 1.5rem;
             border-radius: 4px;
             margin: 1.5rem 0;
         }
-        .dev-note strong {
-            color: #d39e00;
+        .highlight-box strong {
+            color: #1b5e20;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .success {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .failed {
+            color: #c0392b;
+            font-weight: 600;
         }
         .btn {
             display: inline-block;
@@ -63,16 +111,39 @@
         .btn:hover {
             background: #1a2a3a;
         }
-        .btn-example {
+        .btn-download {
             background: #2e7d32;
         }
-        .btn-example:hover {
+        .btn-download:hover {
             background: #1b5e20;
+        }
+        .btn-example {
+            background: #c0392b;
+        }
+        .btn-example:hover {
+            background: #922b21;
+        }
+        .depth-badge {
+            display: inline-block;
+            background: #e8f0fe;
+            border-radius: 12px;
+            padding: 0.1rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
         @media (max-width: 650px) {
             .two-columns {
                 flex-direction: column;
                 gap: 0.5rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            table {
+                font-size: 0.75rem;
+            }
+            th, td {
+                padding: 0.2rem 0.3rem;
             }
         }
     </style>
@@ -89,32 +160,147 @@
 
         <!-- ===== РУССКАЯ КОЛОНКА ===== -->
         <div class="column">
-            <h2>🇷🇺 Русский</h2>
+            <h2>🇷🇺 Результаты эксперимента</h2>
 
-            <div class="dev-note">
-                <p><strong>⏳ В разработке</strong></p>
-                <p>
-                    Раздел «Демонстрация» находится в процессе создания. 
-                    Здесь вы сможете загрузить свой планарный граф и увидеть:
-                </p>
-                <ul>
-                    <li>его раскраску в 4 цвета;</li>
-                </ul>
-                <p style="margin-top: 0.8rem; font-style: italic; color: #555;">
-                    Следите за обновлениями — функционал будет добавлен в ближайшее время.
+            <div class="highlight-box">
+                <strong>✅ ВСЕ 10 графов успешно раскрашены!</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    Алгоритм справился с <strong>10 случайными планарными графами</strong> по 35 вершин каждый.
+                    Для некоторых графов потребовалось увеличить глубину поиска цепочек
+                    с 20 до 25 или 30 треугольников.
                 </p>
             </div>
 
-            <p>
-                Пока вы можете ознакомиться с <a href="theory.html">теорией</a>, 
-                <a href="about.html">описанием проекта</a> 
-                и <a href="example.html">разбором конкретного примера</a>.
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">10</div>
+                    <div class="label">Графов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">10</div>
+                    <div class="label">✅ Успешно раскрашены</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">1 725</div>
+                    <div class="label">Картинок структур</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">570</div>
+                    <div class="label">МБ данных</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">~20 000</div>
+                    <div class="label">Секунд CPU</div>
+                </div>
+            </div>
+
+            <h3>📋 Журнал попыток</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Граф</th>
+                        <th>Попытка 1</th>
+                        <th>Попытка 2</th>
+                        <th>Попытка 3</th>
+                        <th>Итог</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>graph_35_01</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">25</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">30</span></td>
+                        <td><span class="success">✅ 30</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_02</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_03</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_04</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">25</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">30</span></td>
+                        <td><span class="success">✅ 30</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_05</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_06</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_07</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_08</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">25</span></td>
+                        <td>—</td>
+                        <td><span class="success">✅ 25</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_09</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_10</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">25</span></td>
+                        <td>—</td>
+                        <td><span class="success">✅ 25</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #666;">
+                <span class="depth-badge">20</span> — глубина поиска 20 &nbsp;|&nbsp;
+                <span class="depth-badge">25</span> — глубина поиска 25 &nbsp;|&nbsp;
+                <span class="depth-badge">30</span> — глубина поиска 30
             </p>
 
+            <h3>📥 Скачать результаты</h3>
             <p style="margin-top: 0.5rem;">
-                <a href="example.html" class="btn btn-example">🧩 Посмотреть разбор примера</a>
+                <a href="test_of_10_graphs(all_logs__graphs__structures)_600Mb.zip" class="btn btn-download">📦 Скачать эксперимент (570 МБ)</a>
+            </p>
+            <p style="font-size: 0.9rem; color: #666;">
+                В архиве: все логи (включая неудачные попытки), графы (JSON), все изображения структур.
             </p>
 
+            <h3>🧩 Пример</h3>
+            <p>
+                <a href="example.html" class="btn btn-example">📖 Смотреть разбор одного графа</a>
+            </p>
+
+            <h3>📄 Код и файлы</h3>
+            <p>
+                <a href="https://github.com/Vasilii-Kostin/4CT" target="_blank" class="btn">🐙 GitHub-репозиторий</a>
+            </p>
             <p>
                 Полный текст доказательства доступен на Zenodo:
                 <br>
@@ -124,32 +310,146 @@
 
         <!-- ===== АНГЛИЙСКАЯ КОЛОНКА ===== -->
         <div class="column">
-            <h2>🇬🇧 English</h2>
+            <h2>🇬🇧 Experiment Results</h2>
 
-            <div class="dev-note">
-                <p><strong>⏳ Under development</strong></p>
-                <p>
-                    The "Demo" section is currently being built. 
-                    Here you will be able to upload your own planar graph and see:
-                </p>
-                <ul>
-                    <li>its 4‑color coloring;</li>
-                </ul>
-                <p style="margin-top: 0.8rem; font-style: italic; color: #555;">
-                    Stay tuned — the interactive functionality will be added soon.
+            <div class="highlight-box">
+                <strong>✅ ALL 10 graphs successfully colored!</strong>
+                <p style="margin: 0.5rem 0 0 0;">
+                    The algorithm successfully handled <strong>10 random planar graphs</strong> with 35 vertices each.
+                    Some graphs required increasing the forced chain search depth from 20 to 25 or 30 triangles.
                 </p>
             </div>
 
-            <p>
-                In the meantime, you can explore the <a href="theory.html">theory</a>, 
-                <a href="about.html">project description</a>, 
-                and <a href="example.html">a detailed example walkthrough</a>.
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">10</div>
+                    <div class="label">Graphs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">10</div>
+                    <div class="label">✅ Successfully colored</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">1,725</div>
+                    <div class="label">Structure images</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">570</div>
+                    <div class="label">MB of data</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">~20,000</div>
+                    <div class="label">CPU seconds</div>
+                </div>
+            </div>
+
+            <h3>📋 Attempt Log</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Graph</th>
+                        <th>Attempt 1</th>
+                        <th>Attempt 2</th>
+                        <th>Attempt 3</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>graph_35_01</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">25</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">30</span></td>
+                        <td><span class="success">✅ 30</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_02</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_03</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_04</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">25</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">30</span></td>
+                        <td><span class="success">✅ 30</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_05</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_06</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_07</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_08</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">25</span></td>
+                        <td>—</td>
+                        <td><span class="success">✅ 25</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_09</strong></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">20</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="success">✅ 20</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph_35_10</strong></td>
+                        <td><span class="failed">❌ FAILED</span> <span class="depth-badge">20</span></td>
+                        <td><span class="success">✅ SUCCESS</span> <span class="depth-badge">25</span></td>
+                        <td>—</td>
+                        <td><span class="success">✅ 25</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #666;">
+                <span class="depth-badge">20</span> — depth 20 &nbsp;|&nbsp;
+                <span class="depth-badge">25</span> — depth 25 &nbsp;|&nbsp;
+                <span class="depth-badge">30</span> — depth 30
             </p>
 
+            <h3>📥 Download Results</h3>
             <p style="margin-top: 0.5rem;">
-                <a href="example.html" class="btn btn-example">🧩 View example walkthrough</a>
+                <a href="test_of_10_graphs(all_logs__graphs__structures)_600Mb.zip" class="btn btn-download">📦 Download experiment (570 MB)</a>
+            </p>
+            <p style="font-size: 0.9rem; color: #666;">
+                Archive includes: all logs (including failed attempts), graphs (JSON), all structure images.
             </p>
 
+            <h3>🧩 Example</h3>
+            <p>
+                <a href="example.html" class="btn btn-example">📖 View one graph walkthrough</a>
+            </p>
+
+            <h3>📄 Code & Files</h3>
+            <p>
+                <a href="https://github.com/Vasilii-Kostin/4CT" target="_blank" class="btn">🐙 GitHub Repository</a>
+            </p>
             <p>
                 The full proof is available on Zenodo:
                 <br>
