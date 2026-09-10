@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Анекдот про цепочку вынужденности — бытовая иллюстрация к теореме о четырёх красках">
-    <meta name="keywords" content="цепочка вынужденности, теорема о четырёх красках, 4CT, анекдот, иллюстрация, forced chain">
+    <meta name="description" content="Анекдот про цепочку вынужденности — отступление к теореме о четырёх красках">
+    <meta name="keywords" content="цепочка вынужденности, теорема о четырёх красках, 4CT, анекдот, forced chain">
     <meta name="robots" content="index, follow">
     <title>Анекдот про цепочку вынужденности — 4CT</title>
     <style>
@@ -27,14 +27,6 @@
             border-left: 4px solid #2c3e50;
             padding-left: 0.8rem;
         }
-        h3 {
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-            color: #2c3e50;
-        }
-        .section {
-            margin: 1.5rem 0;
-        }
         .two-columns {
             display: flex;
             flex-wrap: wrap;
@@ -44,30 +36,6 @@
         .column {
             flex: 1;
             min-width: 280px;
-        }
-        .lang-switch {
-            margin: 1rem 0;
-            font-size: 0.9rem;
-            color: #555;
-        }
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 4px solid #2c3e50;
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-            border-radius: 4px;
-        }
-        .highlight-box.warning {
-            border-left-color: #cc5500;
-            background: #fff8f0;
-        }
-        .highlight-box.success {
-            border-left-color: #2e7d32;
-            background: #f0f8f0;
-        }
-        .highlight-box.definition {
-            border-left-color: #0066cc;
-            background: #f0f4ff;
         }
         .anecdote {
             background: #fdfaf5;
@@ -85,34 +53,6 @@
             font-weight: 600;
             color: #8b0000;
         }
-        .analogy-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
-        }
-        .analogy-table th,
-        .analogy-table td {
-            border: 1px solid #ddd;
-            padding: 0.6rem 1rem;
-            text-align: left;
-            vertical-align: top;
-        }
-        .analogy-table th {
-            background: #2c3e50;
-            color: white;
-        }
-        .analogy-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        .badge-chain { background: #cc5500; color: white; }
         .nav-links {
             margin-top: 2rem;
             padding-top: 1rem;
@@ -120,7 +60,6 @@
         }
         .nav-links a {
             display: inline-block;
-            margin-right: 1rem;
             background: #2c3e50;
             color: white;
             padding: 0.6rem 1.2rem;
@@ -136,32 +75,18 @@
                 flex-direction: column;
                 gap: 0.5rem;
             }
-            .analogy-table {
-                font-size: 0.85rem;
-            }
         }
     </style>
 </head>
 <body>
 
-    <h1>😄 Анекдот про цепочку вынужденности</h1>
-
-    <div class="lang-switch">
-        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
-    </div>
-
-    <div class="highlight-box definition">
-        <strong>Иллюстрация к понятию «цепочка вынужденности»</strong> из конструктивного доказательства теоремы о четырёх красках.
-        Прочитайте сначала <a href="theory.html">теорию</a>, чтобы понять контекст.
-    </div>
+    <h1>😄 Анекдот про цепочку вынужденности / A Joke about a Forced Chain</h1>
 
     <div class="two-columns">
 
         <!-- ========== КОЛОНКА РУССКИЙ ========== -->
         <div class="column">
             <h2>🇷🇺 Русский</h2>
-
-            <h3>Анекдот</h3>
 
             <div class="anecdote">
                 <p>Пришел мужик в магазин и видит: висят модные брюки, узкие-преузкие, да еще и скидка на них 50%. «Ну как тут устоять? — думает. — И модно, и дешево». Купил, принес домой, натянул, перед зеркалом крутится — красота! Ноги как струнки, все при нем.</p>
@@ -176,65 +101,11 @@
 
                 <p class="punchline">Цепочка вынужденности…</p>
             </div>
-
-            <h3>Разбор: почему это цепочка вынужденности</h3>
-
-            <p>
-                <span class="badge badge-chain">Тип III</span>
-                В теории <strong>цепочка вынужденности</strong> — это последовательность треугольников, соединённых по общим рёбрам, где каждый следующий вынужден предыдущим. У неё <strong>нет выделенного центра</strong>, и она может проходить по всему графу.
-            </p>
-
-            <p>Анекдот повторяет эту структуру один в один:</p>
-
-            <table class="analogy-table">
-                <tr>
-                    <th>В теории</th>
-                    <th>В анекдоте</th>
-                </tr>
-                <tr>
-                    <td>Последовательность треугольников, каждый вынужден предыдущим</td>
-                    <td>Последовательность покупок: брюки → пиджак → пальто → машина</td>
-                </tr>
-                <tr>
-                    <td>Нет выделенного центра — цепочка проходит по всему графу</td>
-                    <td>Нет «главной» покупки — каждая тянет следующую</td>
-                </tr>
-                <tr>
-                    <td>При замыкании возникает конфликт (тип A или B)</td>
-                    <td>Финал: возврат к тем же брюкам, но втрое дороже — конфликт</td>
-                </tr>
-                <tr>
-                    <td>Единственный механизм, порождающий четвёртый цвет</td>
-                    <td>Единственный механизм, порождающий все траты</td>
-                </tr>
-                <tr>
-                    <td>Всё остальное — «море», раскрашивается тривиально</td>
-                    <td>Вся остальная жизнь была бы простой без этой цепочки</td>
-                </tr>
-            </table>
-
-            <div class="highlight-box warning">
-                <strong>Мораль:</strong>
-                <p style="margin: 0.5rem 0 0 0;">
-                    В теореме цепочки вынужденности <em>разбивают</em> (splitting edges), чтобы уничтожить структуру и сделать граф 3-раскрашиваемым.
-                    Мужик цепочку не разорвал — он прошёл её до конца и замкнул на тех же брюках.
-                    Если бы он «разбил» её — например, остановился на пиджаке и сказал «и так сойдёт» — он бы избежал конфликта.
-                    Но тогда не было бы ни пальто, ни чёрной машины, ни анекдота.
-                </p>
-            </div>
-
-            <div class="highlight-box success">
-                <strong>Вывод:</strong> сложность локализована в цепочке вынужденности.
-                Разорвёшь цепочку — станешь 3-раскрашиваемым.
-                Не разорвёшь — получишь четвёртый цвет, то есть переплатишь втрое.
-            </div>
         </div>
 
         <!-- ========== КОЛОНКА АНГЛИЙСКИЙ ========== -->
         <div class="column">
             <h2>🇬🇧 English</h2>
-
-            <h3>The Joke</h3>
 
             <div class="anecdote">
                 <p>A man walks into a store and sees fashionable trousers — narrow, very narrow — and they're 50% off. "How can I resist? — he thinks. — Both stylish and cheap." He buys them, brings them home, puts them on, twirls in front of the mirror — beautiful! Legs like strings, everything fits.</p>
@@ -248,58 +119,6 @@
                 <p>And so he drives this black car to the store — to look at new trousers, because the old ones are already worn out. He arrives, walks in... and there in the window are the same trousers. Only now without the discount. And the price is three times higher.</p>
 
                 <p class="punchline">A forced chain…</p>
-            </div>
-
-            <h3>Analysis: why this is a forced chain</h3>
-
-            <p>
-                <span class="badge badge-chain">Type III</span>
-                In the theory, a <strong>forced chain</strong> is a sequence of triangles connected by common edges, where each next one is forced by the previous. It has <strong>no distinguished center</strong> and can traverse the entire graph.
-            </p>
-
-            <p>The joke mirrors this structure exactly:</p>
-
-            <table class="analogy-table">
-                <tr>
-                    <th>In theory</th>
-                    <th>In the joke</th>
-                </tr>
-                <tr>
-                    <td>Sequence of triangles, each forced by the previous</td>
-                    <td>Sequence of purchases: trousers → jacket → overcoat → car</td>
-                </tr>
-                <tr>
-                    <td>No distinguished center — chain traverses the whole graph</td>
-                    <td>No "main" purchase — each pulls the next</td>
-                </tr>
-                <tr>
-                    <td>When the chain closes, a conflict arises (type A or B)</td>
-                    <td>Finale: return to the same trousers, but three times pricier — conflict</td>
-                </tr>
-                <tr>
-                    <td>The only mechanism generating the fourth color</td>
-                    <td>The only mechanism generating all the spending</td>
-                </tr>
-                <tr>
-                    <td>Everything else is "the sea", colored trivially</td>
-                    <td>All the rest of life would be simple without this chain</td>
-                </tr>
-            </table>
-
-            <div class="highlight-box warning">
-                <strong>Moral:</strong>
-                <p style="margin: 0.5rem 0 0 0;">
-                    In the theorem, forced chains are <em>split</em> to destroy the structure and make the graph 3-colorable.
-                    The man didn't break the chain — he went through it to the end and closed it on the same trousers.
-                    If he had "split" it — say, stopped at the jacket and said "good enough" — he would have avoided the conflict.
-                    But then there would be no overcoat, no black car, and no joke.
-                </p>
-            </div>
-
-            <div class="highlight-box success">
-                <strong>Conclusion:</strong> complexity is localized in the forced chain.
-                Break the chain — you become 3-colorable.
-                Don't break it — you get the fourth color, i.e., you pay three times more.
             </div>
         </div>
 
