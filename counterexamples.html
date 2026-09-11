@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Другие контрпримеры к компьютерному доказательству теоремы о четырёх красках — цепочки вынужденности разных типов">
+    <meta name="keywords" content="теорема о четырёх красках, 4CT, контрпример, цепочка вынужденности, планарный граф">
+    <meta name="robots" content="index, follow">
+    <title>Другие контрпримеры — 4CT</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #2c3e50;
+            padding-left: 0.8rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            color: #2c3e50;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .column {
+            flex: 1;
+            min-width: 280px;
+        }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2c3e50;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .highlight-box.warning {
+            border-left-color: #cc5500;
+            background: #fff8f0;
+        }
+        .highlight-box.success {
+            border-left-color: #2e7d32;
+            background: #f0f8f0;
+        }
+        .highlight-box.definition {
+            border-left-color: #0066cc;
+            background: #f0f4ff;
+        }
+        .graph-figure {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .graph-figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .graph-figure figcaption {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        .pdf-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .pdf-link:hover {
+            background: #1a2a3a;
+        }
+        .nav-links {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+        .nav-links a {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+        .nav-links a:hover {
+            background: #1a2a3a;
+        }
+        .example-separator {
+            border-top: 2px dashed #ccc;
+            margin: 3rem 0 1rem 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem 0.8rem;
+            text-align: left;
+        }
+        th {
+            background: #f0f4ff;
+            color: #2c3e50;
+        }
+        @media (max-width: 650px) {
+            .two-columns {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚠️ Другие контрпримеры / Other Counterexamples</h1>
+
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
+    </div>
+
+    <div class="two-columns">
+
+        <!-- ========== КОЛОНКА РУССКИЙ ========== -->
+        <div class="column">
+            <h2>🇷🇺 Два других типа цепочек вынужденности</h2>
+
+            <p>
+                На <a href="counterexample.html">главной странице контрпримера</a> показан 
+                <strong>замкнутый</strong> случай: цепочка вынужденности замыкается и требует 
+                четвёртого цвета. Но это <strong>не единственный</strong> тип структуры. 
+                Ниже — ещё два примера, показывающих, что <strong>глобальная</strong> 
+                вынужденность может возникать и без замыкания цепочки.
+            </p>
+
+            <!-- ============= ПРИМЕР 2 ============= -->
+            <h2>Пример 2: Незамкнутая цепочка + внешняя вершина</h2>
+
+            <p>
+                Цепочка из 16 вершин <strong>не замкнута</strong> — рёбра 0–14, 0–15, 1–15 удалены. 
+                Сама по себе она 3-раскрашиваема. Но внешняя вершина <strong>16</strong> соединена 
+                с тремя её вершинами — <strong>0, 14, 10</strong>, которые имеют <strong>разные</strong> 
+                цвета. Значит, 16 вынуждена получить <strong>четвёртый цвет</strong>.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_counterexample2.png" alt="Пример 2: незамкнутая цепочка и внешняя вершина">
+                <figcaption>
+                    Граф из 17 вершин. Цепочка (0–15) не замкнута. Вершина 16 (жёлтая, 
+                    красный контур) в центре, соединена красными рёбрами с 0, 14, 10 — 
+                    тремя вершинами разных цветов.
+                </figcaption>
+            </figure>
+
+            <h3>Проверка</h3>
+
+            <div class="highlight-box success">
+                <strong>Результат 3-раскрасчика:</strong>
+                цвета 0, 14, 10 — <strong>все три разные</strong> (синий, зелёный, красный). 
+                Значит, вершина 16 <strong>вынуждена</strong> взять четвёртый цвет. 
+                Пример <strong>подтверждён формально</strong>.
+            </div>
+
+            <h3>Чем отличается от главного примера</h3>
+
+            <div class="highlight-box">
+                <strong>Главный пример (19 вершин):</strong> цепочка <em>замкнута</em>. 
+                Конфликт — <em>внутри</em> цепочки. Четвёртый цвет нужен <em>самой цепочке</em>.
+            </div>
+
+            <div class="highlight-box warning">
+                <strong>Пример 2 (17 вершин):</strong> цепочка <em>не замкнута</em>. 
+                Конфликт — <em>снаружи</em>, в вершине 16. 
+                Четвёртый цвет нужен <em>внешней вершине</em>, но <em>из-за</em> цепочки.
+            </div>
+
+            <!-- ============= ПРИМЕР 3 ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Пример 3: Две внешние вершины + ребро</h2>
+
+            <p>
+                Здесь уже <strong>две</strong> внешние вершины: <strong>16</strong> соединена с 2 и 6, 
+                <strong>17</strong> соединена с 8 и 12. Обе вынуждены получить <strong>синий</strong> цвет. 
+                Но между ними есть <strong>ребро 16–17</strong> — значит, они <strong>не могут</strong> 
+                иметь одинаковый цвет. Возникает <strong>конфликт между двумя внешними вершинами</strong>.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_counterexample3.png" alt="Пример 3: две внешние вершины и ребро между ними">
+                <figcaption>
+                    Граф из 18 вершин. Цепочка (0–15) не замкнута. 
+                    Вершины 16 (соединена с 2, 6) и 17 (соединена с 8, 12) — обе синие, 
+                    с красным контуром. Ребро 16–17 — красное.
+                </figcaption>
+            </figure>
+
+            <h3>Проверка</h3>
+
+            <div class="highlight-box success">
+                <strong>Результат 3-раскрасчика:</strong>
+                цвета 2 и 6 — <strong>разные</strong> (зелёный, синий); 
+                цвета 8 и 12 — <strong>разные</strong> (зелёный, синий). 
+                Значит, <strong>16 и 17 обе вынуждены к красному</strong> (единственный доступный цвет). 
+                Но они соединены ребром — <strong>конфликт</strong>. 
+                Пример <strong>подтверждён формально</strong>.
+            </div>
+
+            <h3>Чем отличается от примеров 1 и 2</h3>
+
+            <table>
+                <tr>
+                    <th>Пример</th>
+                    <th>Цепочка</th>
+                    <th>Источник 4-го цвета</th>
+                    <th>Конфликт</th>
+                </tr>
+                <tr>
+                    <td>1 (19 вершин)</td>
+                    <td>замкнута</td>
+                    <td>внутри цепочки</td>
+                    <td>замыкание</td>
+                </tr>
+                <tr>
+                    <td>2 (17 вершин)</td>
+                    <td>не замкнута</td>
+                    <td>одна внешняя вершина</td>
+                    <td>локальный у вершины</td>
+                </tr>
+                <tr>
+                    <td><strong>3 (18 вершин)</strong></td>
+                    <td><strong>не замкнута</strong></td>
+                    <td><strong>пара внешних вершин</strong></td>
+                    <td><strong>между двумя вершинами</strong></td>
+                </tr>
+            </table>
+
+            <p>
+                Пример 3 показывает: <strong>вынужденность может распространяться за пределы цепочки</strong> 
+                и создавать конфликты <strong>между</strong> внешними вершинами. Это уже <strong>не сводится</strong> 
+                ни к какому конечному списку локальных конфигураций.
+            </p>
+
+            <h3>Почему это важно для алгоритма</h3>
+
+            <p>
+                Локальный поиск видит вершину 16 — она соединена с 2 и 6, обе разрешают синий. Всё нормально. 
+                Локальный поиск видит вершину 17 — она соединена с 8 и 12, обе разрешают синий. Всё нормально. 
+                Локальный поиск видит ребро 16–17 — оно требует разных цветов. Но какие цвета у 16 и 17 — 
+                <strong>не локальная</strong> информация.
+            </p>
+
+            <p>
+                Чтобы понять, что <strong>обе</strong> вынуждены к синему, нужно <strong>знать цвета всей цепочки</strong>. 
+                А это \(O(n)\) шагов. Если таких пар внешних вершин \(m\) — то \(O(n \cdot m)\).
+            </p>
+
+            <div class="highlight-box success">
+                <strong>Вывод:</strong> Существует <strong>бесконечно много</strong> типов структур, 
+                где глобальная вынужденность порождает конфликт, не сводимый к конечному списку 
+                локальных конфигураций. Примеры 2 и 3 — лишь первые из них. 
+                Они <strong>усложняются</strong>: одна внешняя вершина, две внешние вершины, ребро между ними, 
+                и так далее.
+            </div>
+
+            <h3>Что это значит для теоремы</h3>
+
+            <p>
+                Теорема о четырёх красках, скорее всего, верна. Но её классическое доказательство 
+                опирается на <strong>локальный</strong> поиск структур. Эти примеры показывают, 
+                что глобальная вынужденность может возникать <strong>вне</strong> цепочки — и тогда 
+                локальный поиск её не видит.
+            </p>
+
+            <p>
+                Конструктивное доказательство, представленное на этом сайте, предлагает альтернативу: 
+                <strong>явный алгоритм</strong>, который работает с любой цепочкой вынужденности — 
+                замкнутой или незамкнутой, — и с любыми внешними связями.
+            </p>
+
+            <div class="nav-links">
+                <a href="counterexample.html">← Главный контрпример</a>
+                <a href="theory.html">← К теории</a>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                Полный текст доказательства доступен в препринте на Zenodo:
+            </p>
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
+                📄 Читать полную статью (PDF, Zenodo)
+            </a>
+        </div>
+
+        <!-- ========== КОЛОНКА АНГЛИЙСКИЙ ========== -->
+        <div class="column">
+            <h2>🇬🇧 Two other types of forced chains</h2>
+
+            <p>
+                The <a href="counterexample.html">main counterexample page</a> shows the 
+                <strong>closed</strong> case: a forced chain closes and requires a fourth color. 
+                But this is <strong>not the only</strong> type of structure. Below are two more 
+                examples showing that <strong>global</strong> forcedness can arise without 
+                closing the chain.
+            </p>
+
+            <!-- ============= EXAMPLE 2 ============= -->
+            <h2>Example 2: Open chain + external vertex</h2>
+
+            <p>
+                A chain of 16 vertices is <strong>open</strong> — edges 0–14, 0–15, 1–15 are removed. 
+                On its own, it is 3-colorable. But the external vertex <strong>16</strong> is connected 
+                to three of its vertices — <strong>0, 14, 10</strong> — which have <strong>different</strong> 
+                colors. Therefore, 16 is forced to take a <strong>fourth color</strong>.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_counterexample2.png" alt="Example 2: open chain and external vertex">
+                <figcaption>
+                    A graph with 17 vertices. The chain (0–15) is open. Vertex 16 (yellow, 
+                    red border) is in the center, connected by red edges to 0, 14, 10 — 
+                    three vertices of different colors.
+                </figcaption>
+            </figure>
+
+            <h3>Verification</h3>
+
+            <div class="highlight-box success">
+                <strong>3-coloring result:</strong>
+                the colors of 0, 14, 10 are <strong>all three different</strong> (blue, green, red). 
+                Therefore, vertex 16 is <strong>forced</strong> to take the fourth color. 
+                The example is <strong>formally confirmed</strong>.
+            </div>
+
+            <h3>How it differs from the main example</h3>
+
+            <div class="highlight-box">
+                <strong>Main example (19 vertices):</strong> the chain is <em>closed</em>. 
+                The conflict is <em>inside</em> the chain. The fourth color is needed by the <em>chain itself</em>.
+            </div>
+
+            <div class="highlight-box warning">
+                <strong>Example 2 (17 vertices):</strong> the chain is <em>open</em>. 
+                The conflict is <em>outside</em>, at vertex 16. 
+                The fourth color is needed by the <em>external vertex</em>, but <em>because of</em> the chain.
+            </div>
+
+            <!-- ============= EXAMPLE 3 ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Example 3: Two external vertices + edge</h2>
+
+            <p>
+                Here there are <strong>two</strong> external vertices: <strong>16</strong> is connected to 2 and 6, 
+                <strong>17</strong> is connected to 8 and 12. Both are forced to take <strong>blue</strong>. 
+                But there is an <strong>edge 16–17</strong> — so they <strong>cannot</strong> have the same color. 
+                A <strong>conflict between two external vertices</strong> arises.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_counterexample3.png" alt="Example 3: two external vertices and an edge between them">
+                <figcaption>
+                    A graph with 18 vertices. The chain (0–15) is open. 
+                    Vertices 16 (connected to 2, 6) and 17 (connected to 8, 12) are both blue, 
+                    with red borders. The edge 16–17 is red.
+                </figcaption>
+            </figure>
+
+            <h3>Verification</h3>
+
+            <div class="highlight-box success">
+                <strong>3-coloring result:</strong>
+                the colors of 2 and 6 are <strong>different</strong> (green, blue); 
+                the colors of 8 and 12 are <strong>different</strong> (green, blue). 
+                Therefore, <strong>both 16 and 17 are forced to red</strong> (the only available color). 
+                But they are connected by an edge — <strong>conflict</strong>. 
+                The example is <strong>formally confirmed</strong>.
+            </div>
+
+            <h3>How it differs from Examples 1 and 2</h3>
+
+            <table>
+                <tr>
+                    <th>Example</th>
+                    <th>Chain</th>
+                    <th>Source of 4th color</th>
+                    <th>Conflict</th>
+                </tr>
+                <tr>
+                    <td>1 (19 vertices)</td>
+                    <td>closed</td>
+                    <td>inside the chain</td>
+                    <td>closure</td>
+                </tr>
+                <tr>
+                    <td>2 (17 vertices)</td>
+                    <td>open</td>
+                    <td>one external vertex</td>
+                    <td>local at the vertex</td>
+                </tr>
+                <tr>
+                    <td><strong>3 (18 vertices)</strong></td>
+                    <td><strong>open</strong></td>
+                    <td><strong>a pair of external vertices</strong></td>
+                    <td><strong>between two vertices</strong></td>
+                </tr>
+            </table>
+
+            <p>
+                Example 3 shows: <strong>forcedness can spread beyond the chain</strong> 
+                and create conflicts <strong>between</strong> external vertices. This <strong>does not reduce</strong> 
+                to any finite list of local configurations.
+            </p>
+
+            <h3>Why this matters for the algorithm</h3>
+
+            <p>
+                Local search sees vertex 16 — it is connected to 2 and 6, both allow blue. All normal. 
+                Local search sees vertex 17 — it is connected to 8 and 12, both allow blue. All normal. 
+                Local search sees edge 16–17 — it requires different colors. But what colors 16 and 17 have — 
+                is <strong>not local</strong> information.
+            </p>
+
+            <p>
+                To understand that <strong>both</strong> are forced to blue, one needs to <strong>know the colors of the entire chain</strong>. 
+                That is \(O(n)\) steps. If there are \(m\) such pairs of external vertices — then \(O(n \cdot m)\).
+            </p>
+
+            <div class="highlight-box success">
+                <strong>Conclusion:</strong> There are <strong>infinitely many</strong> types of structures 
+                where global forcedness creates a conflict that does not reduce to a finite list 
+                of local configurations. Examples 2 and 3 are just the first of them. 
+                They <strong>grow more complex</strong>: one external vertex, two external vertices, an edge between them, 
+                and so on.
+            </div>
+
+            <h3>What this means for the theorem</h3>
+
+            <p>
+                The Four Color Theorem is most likely true. But its classical proof relies on 
+                <strong>local</strong> search for structures. These examples show that global forcedness 
+                can arise <strong>outside</strong> the chain — and then local search does not see it.
+            </p>
+
+            <p>
+                The constructive proof presented on this site offers an alternative: 
+                an <strong>explicit algorithm</strong> that works with any forced chain — 
+                closed or open — and with any external connections.
+            </p>
+
+            <div class="nav-links">
+                <a href="counterexample.html">← Main counterexample</a>
+                <a href="theory.html">← To theory</a>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                The full proof is available in the preprint on Zenodo:
+            </p>
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
+                📄 Read the full paper (PDF, Zenodo)
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Подключаем меню и подвал -->
+    <script src="menu.js"></script>
+
+</body>
+</html>
