@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Другие контрпримеры к компьютерному доказательству теоремы о четырёх красках — цепочки вынужденности разных типов">
-    <meta name="keywords" content="теорема о четырёх красках, 4CT, контрпример, цепочка вынужденности, планарный граф">
+    <meta name="description" content="Другие контрпримеры к компьютерному доказательству теоремы о четырёх красках — цепочки вынужденности разных типов и бесконечная иерархия">
+    <meta name="keywords" content="теорема о четырёх красках, 4CT, контрпример, цепочка вынужденности, планарный граф, иерархия">
     <meta name="robots" content="index, follow">
     <title>Другие контрпримеры — 4CT</title>
     <style>
@@ -139,6 +139,16 @@
             background: #f0f4ff;
             color: #2c3e50;
         }
+        .hierarchy-list {
+            background: #f0f4ff;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #c0d4f0;
+            margin: 1rem 0;
+        }
+        .hierarchy-list li {
+            margin-bottom: 0.6rem;
+        }
         @media (max-width: 650px) {
             .two-columns {
                 flex-direction: column;
@@ -159,13 +169,13 @@
 
         <!-- ========== КОЛОНКА РУССКИЙ ========== -->
         <div class="column">
-            <h2>🇷🇺 Два других типа цепочек вынужденности</h2>
+            <h2>🇷🇺 Другие типы цепочек вынужденности</h2>
 
             <p>
                 На <a href="counterexample.html">главной странице контрпримера</a> показан 
                 <strong>замкнутый</strong> случай: цепочка вынужденности замыкается и требует 
                 четвёртого цвета. Но это <strong>не единственный</strong> тип структуры. 
-                Ниже — ещё два примера, показывающих, что <strong>глобальная</strong> 
+                Ниже — ещё несколько примеров, показывающих, что <strong>глобальная</strong> 
                 вынужденность может возникать и без замыкания цепочки.
             </p>
 
@@ -277,41 +287,189 @@
                 ни к какому конечному списку локальных конфигураций.
             </p>
 
-            <h3>Почему это важно для алгоритма</h3>
+            <!-- ============= ПРИМЕР 4 ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Пример 4: Соединение с треугольником</h2>
 
             <p>
-                Локальный поиск видит вершину 16 — она соединена с 2 и 6, обе разрешают синий. Всё нормально. 
-                Локальный поиск видит вершину 17 — она соединена с 8 и 12, обе разрешают синий. Всё нормально. 
-                Локальный поиск видит ребро 16–17 — оно требует разных цветов. Но какие цвета у 16 и 17 — 
-                <strong>не локальная</strong> информация.
+                Все предыдущие примеры опирались на <strong>отдельные вершины</strong> цепочки. 
+                Но можно пойти дальше: соединить внешнюю структуру не с вершиной, а с 
+                <strong>целым треугольником</strong> цепочки. Это даёт ещё более жёсткую 
+                вынужденность.
             </p>
 
             <p>
-                Чтобы понять, что <strong>обе</strong> вынуждены к синему, нужно <strong>знать цвета всей цепочки</strong>. 
-                А это \(O(n)\) шагов. Если таких пар внешних вершин \(m\) — то \(O(n \cdot m)\).
+                Пусть в цепочке есть треугольник \(T = \{a, b, c\}\), цвета которого 
+                <strong>уже вынуждены</strong>: скажем, \(a\) — красный, \(b\) — зелёный, 
+                \(c\) — синий. Все три цвета использованы.
+            </p>
+
+            <p>
+                Добавим внешнюю вершину \(x\), соединённую <strong>со всеми тремя</strong> 
+                вершинами \(a, b, c\). Тогда:
+            </p>
+
+            <ul>
+                <li>\(x\) не может быть красной — она смежна с \(a\),</li>
+                <li>\(x\) не может быть зелёной — она смежна с \(b\),</li>
+                <li>\(x\) не может быть синей — она смежна с \(c\).</li>
+            </ul>
+
+            <p>
+                Значит, \(x\) <strong>вынуждена</strong> взять <strong>четвёртый цвет</strong>. 
+                Причём эта вынужденность <strong>не зависит</strong> от того, какие именно 
+                цвета у треугольника \(T\) — важно лишь, что все три <strong>разные</strong>.
+            </p>
+
+            <p>
+                Но это <strong>не всё</strong>. Мы можем добавить <strong>несколько</strong> 
+                таких вершин \(x_1, x_2, \ldots, x_k\), каждая из которых соединена с 
+                <strong>разными</strong> треугольниками цепочки. Тогда:
+            </p>
+
+            <ul>
+                <li>каждая \(x_i\) <strong>вынуждена</strong> к четвёртому цвету,</li>
+                <li>цвет \(x_i\) <strong>зависит</strong> от цветов соответствующего треугольника,</li>
+                <li>а цвета треугольников <strong>зависят</strong> от всей цепочки.</li>
+            </ul>
+
+            <p>
+                Если между какими-то \(x_i\) и \(x_j\) добавить ребро — возникает 
+                <strong>конфликт между двумя внешними структурами</strong>, опирающимися 
+                на <strong>разные</strong> треугольники одной цепочки.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Ключевое отличие от примеров 2 и 3.</strong> 
+                Там внешняя структура опиралась на <em>вершины</em>. 
+                Здесь — на <em>целый треугольник</em>. 
+                Это значит, что для определения цвета \(x\) нужно знать 
+                цвета <strong>всех трёх</strong> вершин треугольника, 
+                а значит — <strong>пройти всю цепочку</strong>.
+            </div>
+
+            <!-- ============= БЕСКОНЕЧНАЯ ИЕРАРХИЯ ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Бесконечная иерархия примеров</h2>
+
+            <p>
+                Примеры 1–4 — это <strong>не изолированные случаи</strong>. 
+                Это <strong>уровни одной иерархии</strong>, где каждый следующий уровень 
+                строится на предыдущем и <strong>наследует</strong> его вынужденность.
+            </p>
+
+            <div class="hierarchy-list">
+                <ul>
+                    <li><strong>Уровень \(L_1\):</strong> цепочка вынужденности 
+                        <em>замыкается</em> → конфликт внутри цепочки. 
+                        <em>(Главный пример, 19 вершин.)</em></li>
+                    <li><strong>Уровень \(L_2\):</strong> цепочка <em>не замкнута</em>, 
+                        внешняя вершина соединена с <em>тремя вершинами разных цветов</em> 
+                        → конфликт у внешней вершины. 
+                        <em>(Пример 2, 17 вершин.)</em></li>
+                    <li><strong>Уровень \(L_3\):</strong> <em>две</em> внешние вершины, 
+                        обе вынуждены к одному цвету, но <em>соединены ребром</em> 
+                        → конфликт между двумя вершинами. 
+                        <em>(Пример 3, 18 вершин.)</em></li>
+                    <li><strong>Уровень \(L_4\):</strong> внешняя структура соединена 
+                        с <em>целым треугольником</em> цепочки → вынужденность сразу 
+                        по трём вершинам → более жёсткий конфликт. 
+                        <em>(Пример 4, описан словами.)</em></li>
+                    <li><strong>Уровень \(L_5\):</strong> <em>две</em> внешние структуры, 
+                        каждая соединена со <em>своим</em> треугольником, 
+                        и между ними ребро → конфликт <em>между структурами</em>.</li>
+                    <li><strong>Уровень \(L_6\):</strong> внешняя структура соединена 
+                        с <em>целой цепочкой треугольников</em> (не с одним, а с несколькими) 
+                        → ещё более глубокий конфликт.</li>
+                    <li><strong>…и так далее, до \(L_k\) для любого \(k\).</strong></li>
+                </ul>
+            </div>
+
+            <p>
+                Каждый уровень \(L_{k+1}\) строится из уровня \(L_k\) добавлением 
+                <strong>нового слоя вынужденности</strong>:
+            </p>
+
+            <ul>
+                <li>новая внешняя структура соединена с <strong>большим числом</strong> вершин цепочки,</li>
+                <li>или с <strong>целым треугольником</strong>,</li>
+                <li>или с <strong>несколькими треугольниками</strong>,</li>
+                <li>или с <strong>целой подцепочкой</strong>.</li>
+            </ul>
+
+            <p>
+                Каждый новый уровень <strong>наследует</strong> вынужденность предыдущего 
+                и <strong>добавляет</strong> свою. Поэтому:
             </p>
 
             <div class="highlight-box success">
-                <strong>Вывод:</strong> Существует <strong>бесконечно много</strong> типов структур, 
-                где глобальная вынужденность порождает конфликт, не сводимый к конечному списку 
-                локальных конфигураций. Примеры 2 и 3 — лишь первые из них. 
-                Они <strong>усложняются</strong>: одна внешняя вершина, две внешние вершины, ребро между ними, 
-                и так далее.
+                <strong>Теорема (неформальная).</strong> 
+                Существует <strong>бесконечная иерархия</strong> планарных графов 
+                \(L_1, L_2, L_3, \ldots\), где каждый \(L_{k+1}\) требует 
+                <strong>более глубокого глобального анализа</strong>, чем \(L_k\), 
+                чтобы обнаружить конфликт. Никакой <strong>конечный</strong> список 
+                локальных конфигураций не может покрыть все уровни этой иерархии.
             </div>
 
-            <h3>Что это значит для теоремы</h3>
+            <h3>Что это значит для алгоритма</h3>
 
             <p>
-                Теорема о четырёх красках, скорее всего, верна. Но её классическое доказательство 
-                опирается на <strong>локальный</strong> поиск структур. Эти примеры показывают, 
-                что глобальная вынужденность может возникать <strong>вне</strong> цепочки — и тогда 
-                локальный поиск её не видит.
+                Их метод (и старый, и новый 2026 года) ищет <strong>локальные</strong> структуры:
+                редуцируемые конфигурации ограниченного диаметра, obstructing cycles 
+                ограниченной длины, «плоские» области с нулевой кривизной.
             </p>
 
             <p>
-                Конструктивное доказательство, представленное на этом сайте, предлагает альтернативу: 
-                <strong>явный алгоритм</strong>, который работает с любой цепочкой вынужденности — 
-                замкнутой или незамкнутой, — и с любыми внешними связями.
+                <strong>Ни один</strong> из этих локальных поисков не увидит <strong>иерархию</strong>:
+            </p>
+
+            <ul>
+                <li>чтобы увидеть конфликт <strong>уровня \(L_2\)</strong>, нужно знать цвета 
+                    трёх вершин цепочки → нужно <strong>пройти цепочку</strong>;</li>
+                <li>чтобы увидеть конфликт <strong>уровня \(L_3\)</strong>, нужно знать цвета 
+                    четырёх вершин цепочки → нужно <strong>пройти цепочку</strong>;</li>
+                <li>чтобы увидеть конфликт <strong>уровня \(L_4\)</strong>, нужно знать цвета 
+                    целого <strong>треугольника</strong> цепочки → нужно <strong>пройти цепочку</strong>;</li>
+                <li>чтобы увидеть конфликт <strong>уровня \(L_k\)</strong>, нужно знать цвета 
+                    \(k\) вершин цепочки → нужно <strong>пройти цепочку</strong>.</li>
+            </ul>
+
+            <p>
+                Сложность растёт <strong>не с \(n\)</strong>, а <strong>с уровнем иерархии \(k\)</strong>. 
+                Их \(O(n \log n)\) — это оценка для <strong>одного уровня</strong>. 
+                Для иерархии уровня \(k\) она превращается в \(O(n \cdot k)\) или хуже.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Ключевой вывод.</strong> 
+                Их оценка \(O(n \log n)\) предполагает, что граф можно разбить на 
+                <em>локальные</em> структуры фиксированного размера. 
+                Но бесконечная иерархия \(L_1, L_2, L_3, \ldots\) показывает, 
+                что существуют структуры <strong>любой глубины</strong>. 
+                Локальный поиск не может «перепрыгнуть» через них — 
+                ему придётся проходить всю цепочку <strong>пошагово</strong>.
+            </div>
+
+            <!-- ============= ВЫВОД ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Что это значит для теоремы</h2>
+
+            <p>
+                Теорема о четырёх красках, скорее всего, верна. Но её классическое 
+                доказательство опирается на <strong>локальный</strong> поиск структур. 
+                Иерархия \(L_1, L_2, L_3, \ldots\) показывает, что глобальная 
+                вынужденность может возникать на <strong>любой глубине</strong> — 
+                и тогда локальный поиск её не видит.
+            </p>
+
+            <p>
+                Конструктивное доказательство, представленное на этом сайте, предлагает 
+                альтернативу: <strong>явный алгоритм</strong>, который работает 
+                с любой цепочкой вынужденности — замкнутой или незамкнутой, — 
+                и с любыми внешними связями, включая структуры <strong>любой глубины</strong>.
             </p>
 
             <div class="nav-links">
@@ -329,13 +487,13 @@
 
         <!-- ========== КОЛОНКА АНГЛИЙСКИЙ ========== -->
         <div class="column">
-            <h2>🇬🇧 Two other types of forced chains</h2>
+            <h2>🇬🇧 Other types of forced chains</h2>
 
             <p>
                 The <a href="counterexample.html">main counterexample page</a> shows the 
                 <strong>closed</strong> case: a forced chain closes and requires a fourth color. 
-                But this is <strong>not the only</strong> type of structure. Below are two more 
-                examples showing that <strong>global</strong> forcedness can arise without 
+                But this is <strong>not the only</strong> type of structure. Below are several 
+                more examples showing that <strong>global</strong> forcedness can arise without 
                 closing the chain.
             </p>
 
@@ -447,40 +605,188 @@
                 to any finite list of local configurations.
             </p>
 
-            <h3>Why this matters for the algorithm</h3>
+            <!-- ============= EXAMPLE 4 ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Example 4: Connection to a triangle</h2>
 
             <p>
-                Local search sees vertex 16 — it is connected to 2 and 6, both allow blue. All normal. 
-                Local search sees vertex 17 — it is connected to 8 and 12, both allow blue. All normal. 
-                Local search sees edge 16–17 — it requires different colors. But what colors 16 and 17 have — 
-                is <strong>not local</strong> information.
+                All previous examples relied on <strong>individual vertices</strong> of the chain. 
+                But one can go further: connect an external structure not to a vertex, but to a 
+                <strong>whole triangle</strong> of the chain. This gives even more rigid forcedness.
             </p>
 
             <p>
-                To understand that <strong>both</strong> are forced to blue, one needs to <strong>know the colors of the entire chain</strong>. 
-                That is \(O(n)\) steps. If there are \(m\) such pairs of external vertices — then \(O(n \cdot m)\).
+                Suppose the chain contains a triangle \(T = \{a, b, c\}\) whose colors are 
+                <strong>already forced</strong>: say, \(a\) is red, \(b\) is green, 
+                \(c\) is blue. All three colors are used.
+            </p>
+
+            <p>
+                Add an external vertex \(x\) connected to <strong>all three</strong> vertices 
+                \(a, b, c\). Then:
+            </p>
+
+            <ul>
+                <li>\(x\) cannot be red — it is adjacent to \(a\),</li>
+                <li>\(x\) cannot be green — it is adjacent to \(b\),</li>
+                <li>\(x\) cannot be blue — it is adjacent to \(c\).</li>
+            </ul>
+
+            <p>
+                Therefore, \(x\) is <strong>forced</strong> to take the <strong>fourth color</strong>. 
+                And this forcedness <strong>does not depend</strong> on which specific colors 
+                the triangle \(T\) has — only that all three are <strong>different</strong>.
+            </p>
+
+            <p>
+                But this is <strong>not all</strong>. We can add <strong>several</strong> 
+                such vertices \(x_1, x_2, \ldots, x_k\), each connected to 
+                <strong>different</strong> triangles of the chain. Then:
+            </p>
+
+            <ul>
+                <li>each \(x_i\) is <strong>forced</strong> to the fourth color,</li>
+                <li>the color of \(x_i\) <strong>depends</strong> on the colors of its triangle,</li>
+                <li>and the colors of the triangles <strong>depend</strong> on the entire chain.</li>
+            </ul>
+
+            <p>
+                If we add an edge between some \(x_i\) and \(x_j\), a 
+                <strong>conflict between two external structures</strong> arises, 
+                relying on <strong>different</strong> triangles of the same chain.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Key difference from Examples 2 and 3.</strong> 
+                There, the external structure relied on <em>vertices</em>. 
+                Here — on a <em>whole triangle</em>. 
+                This means that to determine the color of \(x\), one needs to know 
+                the colors of <strong>all three</strong> vertices of the triangle, 
+                and therefore — to <strong>traverse the entire chain</strong>.
+            </div>
+
+            <!-- ============= INFINITE HIERARCHY ============= -->
+            <div class="example-separator"></div>
+
+            <h2>Infinite hierarchy of examples</h2>
+
+            <p>
+                Examples 1–4 are <strong>not isolated cases</strong>. 
+                They are <strong>levels of one hierarchy</strong>, where each next level 
+                is built on the previous one and <strong>inherits</strong> its forcedness.
+            </p>
+
+            <div class="hierarchy-list">
+                <ul>
+                    <li><strong>Level \(L_1\):</strong> the forced chain 
+                        <em>closes</em> → conflict inside the chain. 
+                        <em>(Main example, 19 vertices.)</em></li>
+                    <li><strong>Level \(L_2\):</strong> the chain is <em>open</em>, 
+                        an external vertex is connected to <em>three vertices of different colors</em> 
+                        → conflict at the external vertex. 
+                        <em>(Example 2, 17 vertices.)</em></li>
+                    <li><strong>Level \(L_3\):</strong> <em>two</em> external vertices, 
+                        both forced to one color, but <em>connected by an edge</em> 
+                        → conflict between two vertices. 
+                        <em>(Example 3, 18 vertices.)</em></li>
+                    <li><strong>Level \(L_4\):</strong> an external structure connected 
+                        to a <em>whole triangle</em> of the chain → forcedness over three 
+                        vertices at once → more rigid conflict. 
+                        <em>(Example 4, described in words.)</em></li>
+                    <li><strong>Level \(L_5\):</strong> <em>two</em> external structures, 
+                        each connected to its <em>own</em> triangle, 
+                        with an edge between them → conflict <em>between structures</em>.</li>
+                    <li><strong>Level \(L_6\):</strong> an external structure connected 
+                        to a <em>whole chain of triangles</em> (not one, but several) 
+                        → even deeper conflict.</li>
+                    <li><strong>…and so on, to \(L_k\) for any \(k\).</strong></li>
+                </ul>
+            </div>
+
+            <p>
+                Each level \(L_{k+1}\) is built from level \(L_k\) by adding 
+                a <strong>new layer of forcedness</strong>:
+            </p>
+
+            <ul>
+                <li>the new external structure is connected to <strong>more</strong> vertices of the chain,</li>
+                <li>or to a <strong>whole triangle</strong>,</li>
+                <li>or to <strong>several triangles</strong>,</li>
+                <li>or to a <strong>whole subchain</strong>.</li>
+            </ul>
+
+            <p>
+                Each new level <strong>inherits</strong> the forcedness of the previous 
+                and <strong>adds</strong> its own. Therefore:
             </p>
 
             <div class="highlight-box success">
-                <strong>Conclusion:</strong> There are <strong>infinitely many</strong> types of structures 
-                where global forcedness creates a conflict that does not reduce to a finite list 
-                of local configurations. Examples 2 and 3 are just the first of them. 
-                They <strong>grow more complex</strong>: one external vertex, two external vertices, an edge between them, 
-                and so on.
+                <strong>Theorem (informal).</strong> 
+                There exists an <strong>infinite hierarchy</strong> of planar graphs 
+                \(L_1, L_2, L_3, \ldots\), where each \(L_{k+1}\) requires 
+                <strong>deeper global analysis</strong> than \(L_k\) 
+                to detect the conflict. No <strong>finite</strong> list 
+                of local configurations can cover all levels of this hierarchy.
             </div>
 
-            <h3>What this means for the theorem</h3>
+            <h3>Why this matters for the algorithm</h3>
 
             <p>
-                The Four Color Theorem is most likely true. But its classical proof relies on 
-                <strong>local</strong> search for structures. These examples show that global forcedness 
-                can arise <strong>outside</strong> the chain — and then local search does not see it.
+                Their method (both the old one and the 2026 one) looks for <strong>local</strong> structures:
+                reducible configurations of bounded diameter, obstructing cycles 
+                of bounded length, "flat" regions with zero curvature.
             </p>
 
             <p>
-                The constructive proof presented on this site offers an alternative: 
-                an <strong>explicit algorithm</strong> that works with any forced chain — 
-                closed or open — and with any external connections.
+                <strong>None</strong> of these local searches will see the <strong>hierarchy</strong>:
+            </p>
+
+            <ul>
+                <li>to see a <strong>level \(L_2\)</strong> conflict, one needs to know the colors 
+                    of three vertices of the chain → one must <strong>traverse the chain</strong>;</li>
+                <li>to see a <strong>level \(L_3\)</strong> conflict, one needs to know the colors 
+                    of four vertices of the chain → one must <strong>traverse the chain</strong>;</li>
+                <li>to see a <strong>level \(L_4\)</strong> conflict, one needs to know the colors 
+                    of a whole <strong>triangle</strong> of the chain → one must <strong>traverse the chain</strong>;</li>
+                <li>to see a <strong>level \(L_k\)</strong> conflict, one needs to know the colors 
+                    of \(k\) vertices of the chain → one must <strong>traverse the chain</strong>.</li>
+            </ul>
+
+            <p>
+                The complexity grows <strong>not with \(n\)</strong>, but with the <strong>hierarchy level \(k\)</strong>. 
+                Their \(O(n \log n)\) is an estimate for <strong>one level</strong>. 
+                For a hierarchy of level \(k\), it becomes \(O(n \cdot k)\) or worse.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Key conclusion.</strong> 
+                Their \(O(n \log n)\) bound assumes that the graph can be decomposed into 
+                <em>local</em> structures of fixed size. 
+                But the infinite hierarchy \(L_1, L_2, L_3, \ldots\) shows 
+                that structures of <strong>any depth</strong> exist. 
+                Local search cannot "jump over" them — 
+                it will have to traverse the entire chain <strong>step by step</strong>.
+            </div>
+
+            <!-- ============= CONCLUSION ============= -->
+            <div class="example-separator"></div>
+
+            <h2>What this means for the theorem</h2>
+
+            <p>
+                The Four Color Theorem is most likely true. But its classical 
+                proof relies on <strong>local</strong> search for structures. 
+                The hierarchy \(L_1, L_2, L_3, \ldots\) shows that global 
+                forcedness can arise at <strong>any depth</strong> — 
+                and then local search does not see it.
+            </p>
+
+            <p>
+                The constructive proof presented on this site offers 
+                an alternative: an <strong>explicit algorithm</strong> that works 
+                with any forced chain — closed or open — 
+                and with any external connections, including structures of <strong>any depth</strong>.
             </p>
 
             <div class="nav-links">
