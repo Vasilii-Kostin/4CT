@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Почему я не верю в компьютерное доказательство теоремы о четырёх красках — контрпример через цепочку вынужденности из 19 вершин">
+    <meta name="keywords" content="теорема о четырёх красках, 4CT, контрпример, цепочка вынужденности, Аппель Хакен, компьютерное доказательство">
+    <meta name="robots" content="index, follow">
+    <title>Контрпример — 4CT</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #2c3e50;
+            padding-left: 0.8rem;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            color: #2c3e50;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .column {
+            flex: 1;
+            min-width: 280px;
+        }
+        .lang-switch {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2c3e50;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .highlight-box.warning {
+            border-left-color: #cc5500;
+            background: #fff8f0;
+        }
+        .highlight-box.success {
+            border-left-color: #2e7d32;
+            background: #f0f8f0;
+        }
+        .highlight-box.definition {
+            border-left-color: #0066cc;
+            background: #f0f4ff;
+        }
+        .highlight-box.tribute {
+            border-left-color: #6a1b9a;
+            background: #faf0ff;
+        }
+        .graph-figure {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .graph-figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .graph-figure figcaption {
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #555;
+            font-style: italic;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        .pdf-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .pdf-link:hover {
+            background: #1a2a3a;
+        }
+        @media (max-width: 650px) {
+            .two-columns {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>⚠️ Контрпример / Counterexample</h1>
+
+    <div class="lang-switch">
+        <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
+    </div>
+
+    <div class="two-columns">
+
+        <!-- ========== КОЛОНКА РУССКИЙ ========== -->
+        <div class="column">
+            <h2>🇷🇺 Почему я не верю в компьютерное доказательство</h2>
+
+            <p>
+                В 1977 году Кеннет Аппель и Вольфганг Хакен объявили о доказательстве теоремы о четырёх красках. 
+                Их доказательство опиралось на компьютерный перебор: программа проверила около 1936 конфигураций 
+                и показала, что каждая из них «неизбежна» и «редуцируема». С тех пор это доказательство 
+                многократно проверялось и уточнялось (Робертсон, Сандерс, Сеймур, Томас, 1997), но его 
+                <strong>методологическая основа</strong> осталась той же: конечный список структур, найденных 
+                перебором, и утверждение, что этот список покрывает все возможные случаи.
+            </p>
+
+            <p>
+                Я не верю в это доказательство. Не потому, что сомневаюсь в самой теореме — 
+                она, скорее всего, верна. А потому, что <strong>метод поиска структур</strong> 
+                принципиально неполон. И вот почему.
+            </p>
+
+            <div class="highlight-box tribute">
+                <strong>Дань уважения.</strong> Прежде чем перейти к критике, скажу прямо: 
+                Аппель и Хакен сделали всё, что могли, с тем уровнем технологий, который был 
+                у них в 1977 году. Они совершили настоящий рывок — и в математике, и в развитии 
+                компьютерных методов доказательства. Признание их доказательства доказательством 
+                произошло во многом потому, что этого очень хотели: математическое сообщество 
+                ждало решения проблемы, стоявшей более ста лет. И тогда это был триумф. 
+                Я отношусь к их работе с глубоким уважением.
+            </div>
+
+            <h3>Случайные графы не случайны</h3>
+
+            <p>
+                Компьютерный перебор 1970-х годов искал структуры, которые должны встречаться 
+                в любом планарном графе, требующем пятого цвета. Но алгоритмы генерации графов, 
+                которые при этом использовались, <strong>не были случайными в полном смысле слова</strong>. 
+                Они были одинаковы по методу построения: брались некоторые базовые конфигурации, 
+                к ним применялись локальные операции, и проверялось, не появится ли структура, 
+                которую можно редуцировать.
+            </p>
+
+            <p>
+                Такая генерация <strong>не может</strong> породить структуры определённого типа — 
+                те, которые возникают не из локальных комбинаций, а из <strong>глобальной цепочки 
+                вынужденности</strong>, протянутой через весь граф. Вероятность случайно 
+                получить такую цепочку экспоненциально мала и стремится к нулю с ростом числа вершин.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Ключевая мысль:</strong> Если структура имеет вероятность появления 
+                \(10^{-1000}\), то никакой перебор разумной длины её не найдёт. 
+                Но это не значит, что её не существует.
+            </div>
+
+            <h3>Цепочка вынужденности</h3>
+
+            <p>
+                В моём доказательстве (см. <a href="theory.html">теорию</a>) центральное понятие — 
+                <strong>цепочка вынужденности</strong>. Это последовательность треугольников, 
+                соединённых по общим рёбрам, которая вынуждает вершины принимать строго 
+                определённые цвета. Когда цепочка замыкается, возникает конфликт: 
+                структура графа требует одного, а цепочка вынуждает другое. 
+                Этот конфликт невозможно разрешить тремя цветами — нужен четвёртый.
+            </p>
+
+            <p>
+                \(K_4\) и нечётные звёзды — это <strong>частные случаи</strong> цепочки вынужденности. 
+                Но общий случай гораздо богаче. Цепочка может проходить по всему графу, 
+                не имея выделенного центра, и её длина может быть сколь угодно большой.
+            </p>
+
+            <h3>Контрпример из 19 вершин</h3>
+
+            <p>
+                На рисунке ниже — конкретный граф из 19 вершин, который является 
+                <strong>одной большой цепочкой вынужденности</strong>.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_19_final.png" alt="Контрпример: цепочка вынужденности из 19 вершин">
+                <figcaption>
+                    Граф из 19 вершин. Чётные вершины (0, 2, 4, …, 18) находятся внутри, 
+                    нечётные (1, 3, 5, …, 17) — снаружи. Красное ребро 0–18 — точка замыкания 
+                    цепочки вынужденности. Достаточно перекрасить любую одну вершину 
+                    в четвёртый цвет, чтобы цепочка разрушилась.
+                </figcaption>
+            </figure>
+
+            <p>
+                Как он устроен:
+            </p>
+            <ul>
+                <li><strong>Внешний контур</strong> — нечётные вершины, соединённые последовательно.</li>
+                <li><strong>Внутренний контур</strong> — чётные вершины, соединённые последовательно.</li>
+                <li><strong>Треугольники</strong> — связи между соседними чётными и нечётными вершинами, 
+                    образующие жёсткую триангуляцию.</li>
+                <li><strong>Нечётные пары</strong> — дополнительные рёбра 1–3, 3–5, 5–7, …, 15–17, 
+                    которые протягивают цепочку вдоль всего графа.</li>
+                <li><strong>Красное ребро 0–18</strong> — замыкание. Именно здесь возникает конфликт: 
+                    цепочка вынуждает вершины 0 и 18 иметь одинаковый цвет, но структура требует 
+                    разных цветов.</li>
+            </ul>
+
+            <p>
+                Попробуйте раскрасить этот граф тремя цветами. Вы обнаружите, что это невозможно: 
+                на последнем шаге возникает противоречие. Но если перекрасить <strong>любую одну</strong> 
+                вершину в четвёртый цвет — цепочка рассыпается, и граф становится 3-раскрашиваемым.
+            </p>
+
+            <h3>Почему это контрпример к методу</h3>
+
+            <p>
+                Этот граф:
+            </p>
+            <ul>
+                <li>Планарен.</li>
+                <li>Не содержит петель.</li>
+                <li>Требует четвёртого цвета.</li>
+                <li>Является одной большой цепочкой вынужденности.</li>
+            </ul>
+
+            <p>
+                И таких графов — <strong>бесконечно много</strong>. Ничего не мешает построить 
+                такую же цепочку из 3 000 019 вершин. Или из \(10^{100}\) вершин. Каждая из них 
+                будет контрпримером к утверждению, что конечный список из ~2000 структур, 
+                найденных компьютерным перебором, покрывает все возможные случаи.
+            </p>
+
+            <div class="highlight-box success">
+                <strong>Вывод:</strong> Компьютерное доказательство Аппеля–Хакена опирается на 
+                <em>неполный</em> перебор. Оно находит структуры, которые <em>легко</em> найти, 
+                но пропускает структуры, которые <em>трудно</em> найти, потому что они имеют 
+                исчезающе малую вероятность появления при случайной генерации. 
+                Но когда понимаешь, как устроена раскраска, контрпример построить легко.
+            </div>
+
+            <h3>Что это значит для теоремы</h3>
+
+            <p>
+                Теорема о четырёх красках, скорее всего, верна. Но её классическое доказательство 
+                <strong>не является доказательством в строгом смысле</strong>: оно показывает, 
+                что <em>данный конкретный список</em> структур покрывает все случаи, но не 
+                показывает, что <em>другие</em> структуры не могут существовать. Мой контрпример 
+                демонстрирует, что они существуют — и что их бесконечно много.
+            </p>
+
+            <p>
+                Конструктивное доказательство, представленное на этом сайте, предлагает 
+                альтернативу: вместо перебора структур — <strong>явный алгоритм</strong>, 
+                который работает с любой цепочкой вынужденности, включая те, которые 
+                компьютерный перебор никогда бы не нашёл.
+            </p>
+
+            <p style="margin-top: 2rem;">
+                Полный текст доказательства доступен в препринте на Zenodo:
+            </p>
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
+                📄 Читать полную статью (PDF, Zenodo)
+            </a>
+        </div>
+
+        <!-- ========== КОЛОНКА АНГЛИЙСКИЙ ========== -->
+        <div class="column">
+            <h2>🇬🇧 Why I do not believe in the computer proof</h2>
+
+            <p>
+                In 1977, Kenneth Appel and Wolfgang Haken announced a proof of the Four Color Theorem. 
+                Their proof relied on a computer search: the program checked about 1,936 configurations 
+                and showed that each of them is "unavoidable" and "reducible." Since then, the proof 
+                has been repeatedly verified and refined (Robertson, Sanders, Seymour, Thomas, 1997), 
+                but its <strong>methodological foundation</strong> remains the same: a finite list of 
+                structures found by search, and the claim that this list covers all possible cases.
+            </p>
+
+            <p>
+                I do not believe in this proof. Not because I doubt the theorem itself — 
+                it is most likely true. But because the <strong>method of searching for structures</strong> 
+                is fundamentally incomplete. Here is why.
+            </p>
+
+            <div class="highlight-box tribute">
+                <strong>A tribute.</strong> Before turning to the essence, let me say this plainly: 
+    Appel and Haken did everything they could with the technology available to them in 1977. 
+    They made a genuine breakthrough — both in mathematics and in the development of 
+    computer-assisted proof methods. The acceptance of their proof as a proof happened 
+    largely because people wanted it very much: the mathematical community had been 
+    waiting for a solution to a problem that had stood for over a century. And at that 
+    time, it was a triumph. I regard their work with deep respect.
+            </div>
+
+            <h3>Random graphs are not random</h3>
+
+            <p>
+                The computer search of the 1970s looked for structures that must appear in any 
+                planar graph requiring a fifth color. But the graph generation algorithms used 
+                were <strong>not random in the full sense</strong>. They were identical in their 
+                construction method: some base configurations were taken, local operations were 
+                applied, and a check was made whether a reducible structure had appeared.
+            </p>
+
+            <p>
+                Such generation <strong>cannot</strong> produce structures of a certain type — 
+                those that arise not from local combinations, but from a <strong>global forced 
+                chain</strong> stretched across the entire graph. The probability of randomly 
+                obtaining such a chain is exponentially small and tends to zero as the number 
+                of vertices grows.
+            </p>
+
+            <div class="highlight-box warning">
+                <strong>Key thought:</strong> If a structure has probability \(10^{-1000}\), 
+                then no reasonable search will find it. But that does not mean it does not exist.
+            </div>
+
+            <h3>The forced chain</h3>
+
+            <p>
+                In my proof (see <a href="theory.html">theory</a>), the central concept is the 
+                <strong>forced chain</strong>. It is a sequence of triangles connected by common 
+                edges that forces vertices to take strictly defined colors. When the chain closes, 
+                a conflict arises: the graph structure requires one thing, and the chain forces another. 
+                This conflict cannot be resolved with three colors — a fourth is needed.
+            </p>
+
+            <p>
+                \(K_4\) and odd stars are <strong>special cases</strong> of the forced chain. 
+                But the general case is much richer. A chain can traverse the entire graph 
+                without having a distinguished center, and its length can be arbitrarily large.
+            </p>
+
+            <h3>The 19-vertex counterexample</h3>
+
+            <p>
+                The figure below shows a specific graph with 19 vertices that is 
+                <strong>one large forced chain</strong>.
+            </p>
+
+            <figure class="graph-figure">
+                <img src="graph_19_final.png" alt="Counterexample: a forced chain of 19 vertices">
+                <figcaption>
+                    A graph with 19 vertices. Even vertices (0, 2, 4, …, 18) are inside, 
+                    odd vertices (1, 3, 5, …, 17) are outside. The red edge 0–18 is the closing 
+                    point of the forced chain. It suffices to recolor any single vertex 
+                    with the fourth color to destroy the chain.
+                </figcaption>
+            </figure>
+
+            <p>
+                How it is built:
+            </p>
+            <ul>
+                <li><strong>Outer contour</strong> — odd vertices connected sequentially.</li>
+                <li><strong>Inner contour</strong> — even vertices connected sequentially.</li>
+                <li><strong>Triangles</strong> — connections between adjacent even and odd vertices, 
+                    forming a rigid triangulation.</li>
+                <li><strong>Odd pairs</strong> — additional edges 1–3, 3–5, 5–7, …, 15–17, 
+                    which stretch the chain across the entire graph.</li>
+                <li><strong>Red edge 0–18</strong> — the closure. This is where the conflict arises: 
+                    the chain forces vertices 0 and 18 to have the same color, but the structure 
+                    requires different colors.</li>
+            </ul>
+
+            <p>
+                Try to color this graph with three colors. You will find that it is impossible: 
+                at the last step, a contradiction arises. But if you recolor <strong>any single</strong> 
+                vertex with the fourth color — the chain falls apart, and the graph becomes 3-colorable.
+            </p>
+
+            <h3>Why this is a counterexample to the method</h3>
+
+            <p>
+                This graph:
+            </p>
+            <ul>
+                <li>Is planar.</li>
+                <li>Has no loops.</li>
+                <li>Requires a fourth color.</li>
+                <li>Is one large forced chain.</li>
+            </ul>
+
+            <p>
+                And there are <strong>infinitely many</strong> such graphs. Nothing prevents building 
+                the same chain from 3,000,019 vertices. Or from \(10^{100}\) vertices. Each of them 
+                will be a counterexample to the claim that a finite list of ~2,000 structures found 
+                by computer search covers all possible cases.
+            </p>
+
+            <div class="highlight-box success">
+                <strong>Conclusion:</strong> The Appel–Haken computer proof relies on an 
+                <em>incomplete</em> search. It finds structures that are <em>easy</em> to find, 
+                but misses structures that are <em>hard</em> to find, because they have an 
+                vanishingly small probability of appearing under random generation. 
+                But once you understand how the coloring works, constructing a counterexample is easy.
+            </div>
+
+            <h3>What this means for the theorem</h3>
+
+            <p>
+                The Four Color Theorem is most likely true. But its classical proof 
+                <strong>is not a proof in the strict sense</strong>: it shows that <em>this 
+                particular list</em> of structures covers all cases, but does not show that 
+                <em>other</em> structures cannot exist. My counterexample demonstrates that they 
+                do exist — and that there are infinitely many of them.
+            </p>
+
+            <p>
+                The constructive proof presented on this site offers an alternative: instead of 
+                searching for structures — an <strong>explicit algorithm</strong> that works with 
+                any forced chain, including those that a computer search would never find.
+            </p>
+
+            <p style="margin-top: 2rem;">
+                The full proof is available in the preprint on Zenodo:
+            </p>
+            <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
+                📄 Read the full paper (PDF, Zenodo)
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Подключаем меню и подвал -->
+    <script src="menu.js"></script>
+
+</body>
+</html>
