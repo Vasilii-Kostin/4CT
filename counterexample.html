@@ -144,7 +144,7 @@
             </p>
 
             <div class="highlight-box tribute">
-                <strong>Дань уважения.</strong> Прежде чем перейти к критике, скажу прямо: 
+                <strong>Дань уважения.</strong> Прежде чем перейти к сути, скажу прямо: 
                 Аппель и Хакен сделали всё, что могли, с тем уровнем технологий, который был 
                 у них в 1977 году. Они совершили настоящий рывок — и в математике, и в развитии 
                 компьютерных методов доказательства. Признание их доказательства доказательством 
@@ -276,6 +276,24 @@
                 компьютерный перебор никогда бы не нашёл.
             </p>
 
+            <p>
+                Даже новейшие работы 2026 года подтверждают это ограничение. 
+                В статье <em>Inoue, Kawarabayashi, Miyashita, Mohar, Thomassen, Thorup</em> 
+                (<a href="https://arxiv.org/abs/2603.24880" target="_blank">arXiv:2603.24880</a>) 
+                авторы усиливают метод Аппеля–Хакена: они показывают, что 
+                можно найти <strong>линейное число</strong> редуцируемых конфигураций, а не одну, 
+                и получают алгоритм 4-раскраски за \(O(n \log n)\) вместо квадратичного. 
+                Это крупный результат. Но при этом они прямо признают: <em>«Такой алгоритм 
+                не может быть достигнут известными доказательствами теоремы о четырёх красках»</em> — 
+                то есть старый метод имел структурные ограничения. Более того, их поиск 
+                по-прежнему остаётся <strong>локальным</strong>: они ищут конфигурации ограниченного 
+                диаметра и «плоские» области с нулевой кривизной. Мой контрпример — это 
+                <strong>глобальная</strong> цепочка вынужденности, протянутая через весь граф. 
+                Она не сводится к конечному списку локальных конфигураций, и именно поэтому 
+                остаётся вне рамок любого метода, основанного на таком списке — 
+                даже расширенного до 8202 конфигураций.
+            </p>
+
             <p style="margin-top: 2rem;">
                 Полный текст доказательства доступен в препринте на Zenodo:
             </p>
@@ -305,12 +323,12 @@
 
             <div class="highlight-box tribute">
                 <strong>A tribute.</strong> Before turning to the essence, let me say this plainly: 
-    Appel and Haken did everything they could with the technology available to them in 1977. 
-    They made a genuine breakthrough — both in mathematics and in the development of 
-    computer-assisted proof methods. The acceptance of their proof as a proof happened 
-    largely because people wanted it very much: the mathematical community had been 
-    waiting for a solution to a problem that had stood for over a century. And at that 
-    time, it was a triumph. I regard their work with deep respect.
+                Appel and Haken did everything they could with the technology available to them in 1977. 
+                They made a genuine breakthrough — both in mathematics and in the development of 
+                computer-assisted proof methods. The acceptance of their proof as a proof happened 
+                largely because people wanted it very much: the mathematical community had been 
+                waiting for a solution to a problem that had stood for over a century. And at that 
+                time, it was a triumph. I regard their work with deep respect.
             </div>
 
             <h3>Random graphs are not random</h3>
@@ -431,6 +449,24 @@
                 The constructive proof presented on this site offers an alternative: instead of 
                 searching for structures — an <strong>explicit algorithm</strong> that works with 
                 any forced chain, including those that a computer search would never find.
+            </p>
+
+            <p>
+                Even the newest work from 2026 confirms this limitation. In the paper by 
+                <em>Inoue, Kawarabayashi, Miyashita, Mohar, Thomassen, Thorup</em> 
+                (<a href="https://arxiv.org/abs/2603.24880" target="_blank">arXiv:2603.24880</a>), 
+                the authors strengthen the Appel–Haken method: they show 
+                that one can find a <strong>linear number</strong> of reducible configurations, 
+                not just one, and obtain a 4-coloring algorithm in \(O(n \log n)\) time instead 
+                of quadratic. This is a major result. But they explicitly acknowledge: 
+                <em>“Such an algorithm cannot be achieved by the known proofs of the Four Color 
+                Theorem”</em> — that is, the old method had structural limitations. Moreover, 
+                their search remains <strong>local</strong>: they look for configurations of bounded 
+                diameter and “flat” regions with zero curvature. My counterexample is a 
+                <strong>global</strong> forced chain stretched across the entire graph. It does not 
+                reduce to a finite list of local configurations, and that is precisely why it 
+                remains outside the scope of any method based on such a list — even one extended 
+                to 8,202 configurations.
             </p>
 
             <p style="margin-top: 2rem;">
