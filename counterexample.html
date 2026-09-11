@@ -294,6 +294,15 @@
                 даже расширенного до 8202 конфигураций.
             </p>
 
+            <p>
+                Их оценка \(O(n \log n)\) предполагает, что в графе есть линейное число 
+                локальных редуцируемых конфигураций. В моём контрпримере таких конфигураций нет: 
+                есть одна глобальная цепочка вынужденности. Алгоритм, основанный на локальном 
+                поиске, не сможет её «перепрыгнуть» — ему придётся пройти всю цепочку пошагово. 
+                Это даёт не \(O(n \log n)\), а гораздо худшую сложность. Триангуляция графа или 
+                вставка локальных звёзд не разрушают цепочку: конфликт остаётся глобальным.
+            </p>
+
             <p style="margin-top: 2rem;">
                 Полный текст доказательства доступен в препринте на Zenodo:
             </p>
@@ -467,6 +476,15 @@
                 reduce to a finite list of local configurations, and that is precisely why it 
                 remains outside the scope of any method based on such a list — even one extended 
                 to 8,202 configurations.
+            </p>
+
+            <p>
+                Their \(O(n \log n)\) bound assumes that the graph contains a linear number 
+                of local reducible configurations. In my counterexample, no such configurations 
+                exist: there is one global forced chain. An algorithm based on local search cannot 
+                “jump over” it — it will have to traverse the entire chain step by step. This gives 
+                not \(O(n \log n)\), but a much worse complexity. Triangulating the graph or inserting 
+                local stars does not destroy the chain: the conflict remains global.
             </p>
 
             <p style="margin-top: 2rem;">
