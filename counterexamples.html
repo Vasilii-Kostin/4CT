@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Другие контрпримеры к компьютерному доказательству теоремы о четырёх красках — цепочки вынужденности разных типов и бесконечная иерархия">
-    <meta name="keywords" content="теорема о четырёх красках, 4CT, контрпример, цепочка вынужденности, планарный граф, иерархия">
+    <meta name="description" content="Иерархия глобальных цепочек вынужденности — открытые вопросы о границах локального поиска в теореме о четырёх красках">
+    <meta name="keywords" content="теорема о четырёх красках, 4CT, цепочка вынужденности, иерархия, открытые вопросы">
     <meta name="robots" content="index, follow">
-    <title>Другие контрпримеры — 4CT</title>
+    <title>Иерархия глобальных цепочек — 4CT</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -62,9 +62,9 @@
             border-left-color: #2e7d32;
             background: #f0f8f0;
         }
-        .highlight-box.definition {
+        .highlight-box.question {
             border-left-color: #0066cc;
-            background: #f0f4ff;
+            background: #f0f8ff;
         }
         .graph-figure {
             text-align: center;
@@ -159,7 +159,7 @@
 </head>
 <body>
 
-    <h1>⚠️ Другие контрпримеры / Other Counterexamples</h1>
+    <h1>🔍 Иерархия глобальных цепочек / A Hierarchy of Global Chains</h1>
 
     <div class="lang-switch">
         <span>🇷🇺 Русский</span> &nbsp;|&nbsp; <span>🇬🇧 English</span>
@@ -172,9 +172,9 @@
             <h2>🇷🇺 Другие типы цепочек вынужденности</h2>
 
             <p>
-                На <a href="counterexample.html">главной странице контрпримера</a> показан 
-                <strong>замкнутый</strong> случай: цепочка вынужденности замыкается и требует 
-                четвёртого цвета. Но это <strong>не единственный</strong> тип структуры. 
+                На <a href="counterexample.html">предыдущей странице</a> показан 
+                <strong>замкнутый</strong> случай: цепочка вынужденности замыкается 
+                и требует четвёртого цвета. Это <strong>не единственный</strong> тип структуры. 
                 Ниже — ещё несколько примеров, показывающих, что <strong>глобальная</strong> 
                 вынужденность может возникать и без замыкания цепочки.
             </p>
@@ -283,8 +283,8 @@
 
             <p>
                 Пример 3 показывает: <strong>вынужденность может распространяться за пределы цепочки</strong> 
-                и создавать конфликты <strong>между</strong> внешними вершинами. Это уже <strong>не сводится</strong> 
-                ни к какому конечному списку локальных конфигураций.
+                и создавать конфликты <strong>между</strong> внешними вершинами. 
+                Это <strong>не сводится</strong> ни к какому конечному списку локальных конфигураций.
             </p>
 
             <!-- ============= ПРИМЕР 4 ============= -->
@@ -405,24 +405,24 @@
             </p>
 
             <div class="highlight-box success">
-                <strong>Теорема (неформальная).</strong> 
+                <strong>Наблюдение (неформальное).</strong> 
                 Существует <strong>бесконечная иерархия</strong> планарных графов 
                 \(L_1, L_2, L_3, \ldots\), где каждый \(L_{k+1}\) требует 
                 <strong>более глубокого глобального анализа</strong>, чем \(L_k\), 
-                чтобы обнаружить конфликт. Никакой <strong>конечный</strong> список 
-                локальных конфигураций не может покрыть все уровни этой иерархии.
+                чтобы обнаружить конфликт. Это ставит <strong>открытый вопрос</strong>: 
+                как методы локального поиска соотносятся с этой иерархией?
             </div>
 
-            <h3>Что это значит для алгоритма</h3>
+            <h3>Открытые вопросы для алгоритма</h3>
 
             <p>
-                Их метод (и старый, и новый 2026 года) ищет <strong>локальные</strong> структуры:
+                Метод 1977 года и метод 2026 года ищут <strong>локальные</strong> структуры:
                 редуцируемые конфигурации ограниченного диаметра, obstructing cycles 
                 ограниченной длины, «плоские» области с нулевой кривизной.
             </p>
 
             <p>
-                <strong>Ни один</strong> из этих локальных поисков не увидит <strong>иерархию</strong>:
+                Естественно спросить, как эти методы соотносятся с <strong>иерархией</strong>:
             </p>
 
             <ul>
@@ -438,18 +438,17 @@
 
             <p>
                 Сложность растёт <strong>не с \(n\)</strong>, а <strong>с уровнем иерархии \(k\)</strong>. 
-                Их \(O(n \log n)\) — это оценка для <strong>одного уровня</strong>. 
-                Для иерархии уровня \(k\) она превращается в \(O(n \cdot k)\) или хуже.
+                Оценка \(O(n \log n)\) из работы 2026 года — это оценка для <strong>одного уровня</strong>. 
+                Для иерархии уровня \(k\) может потребоваться \(O(n \cdot k)\) или больше. 
+                Это <strong>открытый вопрос</strong>, а не утверждение.
             </p>
 
-            <div class="highlight-box warning">
-                <strong>Ключевой вывод.</strong> 
-                Их оценка \(O(n \log n)\) предполагает, что граф можно разбить на 
-                <em>локальные</em> структуры фиксированного размера. 
-                Но бесконечная иерархия \(L_1, L_2, L_3, \ldots\) показывает, 
-                что существуют структуры <strong>любой глубины</strong>. 
-                Локальный поиск не может «перепрыгнуть» через них — 
-                ему придётся проходить всю цепочку <strong>пошагово</strong>.
+            <div class="highlight-box question">
+                <strong>Открытый вопрос №4:</strong> 
+                Можно ли построить алгоритм 4-раскраски, который работает 
+                с иерархией \(L_1, L_2, L_3, \ldots\) напрямую, 
+                без разложения на локальные структуры фиксированного размера? 
+                Какова будет его сложность?
             </div>
 
             <!-- ============= ВЫВОД ============= -->
@@ -461,27 +460,29 @@
                 Теорема о четырёх красках, скорее всего, верна. Но её классическое 
                 доказательство опирается на <strong>локальный</strong> поиск структур. 
                 Иерархия \(L_1, L_2, L_3, \ldots\) показывает, что глобальная 
-                вынужденность может возникать на <strong>любой глубине</strong> — 
-                и тогда локальный поиск её не видит.
+                вынужденность может возникать на <strong>любой глубине</strong>. 
+                Это интересный объект для дальнейшего изучения.
             </p>
 
             <p>
                 Конструктивное доказательство, представленное на этом сайте, предлагает 
                 альтернативу: <strong>явный алгоритм</strong>, который работает 
                 с любой цепочкой вынужденности — замкнутой или незамкнутой, — 
-                и с любыми внешними связями, включая структуры <strong>любой глубины</strong>.
+                и с любыми внешними связями, включая структуры <strong>любой глубины</strong>. 
+                Возможно, комбинирование этого подхода с локальными методами 
+                даст новые результаты.
             </p>
 
             <div class="nav-links">
-                <a href="counterexample.html">← Главный контрпример</a>
+                <a href="counterexample.html">← Границы локального поиска</a>
                 <a href="theory.html">← К теории</a>
             </div>
 
             <p style="margin-top: 2rem;">
-                Полный текст доказательства доступен в препринте на Zenodo:
+                Полный текст с конструктивным доказательством доступен в препринте на Zenodo:
             </p>
             <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
-                📄 Читать полную статью (PDF, Zenodo)
+                📄 Читать препринт (PDF, Zenodo)
             </a>
         </div>
 
@@ -490,7 +491,7 @@
             <h2>🇬🇧 Other types of forced chains</h2>
 
             <p>
-                The <a href="counterexample.html">main counterexample page</a> shows the 
+                The <a href="counterexample.html">previous page</a> shows the 
                 <strong>closed</strong> case: a forced chain closes and requires a fourth color. 
                 But this is <strong>not the only</strong> type of structure. Below are several 
                 more examples showing that <strong>global</strong> forcedness can arise without 
@@ -601,8 +602,8 @@
 
             <p>
                 Example 3 shows: <strong>forcedness can spread beyond the chain</strong> 
-                and create conflicts <strong>between</strong> external vertices. This <strong>does not reduce</strong> 
-                to any finite list of local configurations.
+                and create conflicts <strong>between</strong> external vertices. 
+                This <strong>does not reduce</strong> to any finite list of local configurations.
             </p>
 
             <!-- ============= EXAMPLE 4 ============= -->
@@ -722,24 +723,24 @@
             </p>
 
             <div class="highlight-box success">
-                <strong>Theorem (informal).</strong> 
+                <strong>Observation (informal).</strong> 
                 There exists an <strong>infinite hierarchy</strong> of planar graphs 
                 \(L_1, L_2, L_3, \ldots\), where each \(L_{k+1}\) requires 
                 <strong>deeper global analysis</strong> than \(L_k\) 
-                to detect the conflict. No <strong>finite</strong> list 
-                of local configurations can cover all levels of this hierarchy.
+                to detect the conflict. This raises an <strong>open question</strong>: 
+                how do local search methods relate to this hierarchy?
             </div>
 
-            <h3>Why this matters for the algorithm</h3>
+            <h3>Open questions for the algorithm</h3>
 
             <p>
-                Their method (both the old one and the 2026 one) looks for <strong>local</strong> structures:
+                The 1977 method and the 2026 method look for <strong>local</strong> structures:
                 reducible configurations of bounded diameter, obstructing cycles 
                 of bounded length, "flat" regions with zero curvature.
             </p>
 
             <p>
-                <strong>None</strong> of these local searches will see the <strong>hierarchy</strong>:
+                It is natural to ask how these methods relate to the <strong>hierarchy</strong>:
             </p>
 
             <ul>
@@ -755,18 +756,17 @@
 
             <p>
                 The complexity grows <strong>not with \(n\)</strong>, but with the <strong>hierarchy level \(k\)</strong>. 
-                Their \(O(n \log n)\) is an estimate for <strong>one level</strong>. 
-                For a hierarchy of level \(k\), it becomes \(O(n \cdot k)\) or worse.
+                The \(O(n \log n)\) estimate from the 2026 work is an estimate for <strong>one level</strong>. 
+                For a hierarchy of level \(k\), it might require \(O(n \cdot k)\) or more. 
+                This is an <strong>open question</strong>, not a claim.
             </p>
 
-            <div class="highlight-box warning">
-                <strong>Key conclusion.</strong> 
-                Their \(O(n \log n)\) bound assumes that the graph can be decomposed into 
-                <em>local</em> structures of fixed size. 
-                But the infinite hierarchy \(L_1, L_2, L_3, \ldots\) shows 
-                that structures of <strong>any depth</strong> exist. 
-                Local search cannot "jump over" them — 
-                it will have to traverse the entire chain <strong>step by step</strong>.
+            <div class="highlight-box question">
+                <strong>Open Question #4:</strong> 
+                Can one build a 4-coloring algorithm that works 
+                with the hierarchy \(L_1, L_2, L_3, \ldots\) directly, 
+                without decomposing into local structures of fixed size? 
+                What would its complexity be?
             </div>
 
             <!-- ============= CONCLUSION ============= -->
@@ -778,27 +778,29 @@
                 The Four Color Theorem is most likely true. But its classical 
                 proof relies on <strong>local</strong> search for structures. 
                 The hierarchy \(L_1, L_2, L_3, \ldots\) shows that global 
-                forcedness can arise at <strong>any depth</strong> — 
-                and then local search does not see it.
+                forcedness can arise at <strong>any depth</strong>. 
+                This is an interesting object for further study.
             </p>
 
             <p>
                 The constructive proof presented on this site offers 
                 an alternative: an <strong>explicit algorithm</strong> that works 
                 with any forced chain — closed or open — 
-                and with any external connections, including structures of <strong>any depth</strong>.
+                and with any external connections, including structures of <strong>any depth</strong>. 
+                Perhaps combining this approach with local methods 
+                will yield new results.
             </p>
 
             <div class="nav-links">
-                <a href="counterexample.html">← Main counterexample</a>
+                <a href="counterexample.html">← Limits of local search</a>
                 <a href="theory.html">← To theory</a>
             </div>
 
             <p style="margin-top: 2rem;">
-                The full proof is available in the preprint on Zenodo:
+                The full text with the constructive proof is available in the preprint on Zenodo:
             </p>
             <a href="https://doi.org/10.5281/zenodo.21514884" target="_blank" class="pdf-link">
-                📄 Read the full paper (PDF, Zenodo)
+                📄 Read the preprint (PDF, Zenodo)
             </a>
         </div>
 
