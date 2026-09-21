@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <a href="counterexample.html" style="color: #ecf0f1; text-decoration: none;">Counterexample</a>
         <a href="example.html" style="color: #ecf0f1; text-decoration: none;">Example</a>
         <a href="demo.html" style="color: #ecf0f1; text-decoration: none;">Demo</a>
+        <a href="news_100_vertices.html" style="color: #ecf0f1; text-decoration: none;">News</a>
         <a href="contacts.html" style="color: #ecf0f1; text-decoration: none;">Contacts</a>
     `;
 

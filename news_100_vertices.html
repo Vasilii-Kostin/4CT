@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Новость: детерминированный алгоритм 4-раскраски планарных графов справляется со 100 вершинами">
+    <meta name="keywords" content="4CT, теорема о четырёх красках, алгоритм раскраски, планарные графы, новости">
+    <meta name="robots" content="index, follow">
+    <title>Новость: 100 вершин — 4CT</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.7;
+            color: #1a1a1a;
+        }
+        h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 0.3rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #2c3e50;
+            padding-left: 0.8rem;
+        }
+        .date {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #2c3e50;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        .highlight-box.success {
+            border-left-color: #2e7d32;
+            background: #f0f8f0;
+        }
+        .highlight-box.warning {
+            border-left-color: #cc5500;
+            background: #fff8f0;
+        }
+        .highlight-box.fail {
+            border-left-color: #b00020;
+            background: #fff0f0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.7rem 0.9rem;
+            text-align: left;
+        }
+        th {
+            background: #2c3e50;
+            color: white;
+            font-weight: 600;
+        }
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        tr:hover {
+            background: #eef2f6;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+        li {
+            margin-bottom: 0.4rem;
+        }
+        a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed #2c3e50;
+        }
+        a:hover {
+            color: #cc5500;
+            border-bottom-color: #cc5500;
+        }
+        .log-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            background: #2c3e50;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: none;
+        }
+        .log-link:hover {
+            background: #1a2a3a;
+            color: white;
+            border-bottom: none;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .stat-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 0.3rem;
+        }
+        .stat-card.success .number {
+            color: #2e7d32;
+        }
+        .stat-card.fail .number {
+            color: #b00020;
+        }
+        @media (max-width: 650px) {
+            table {
+                font-size: 0.85rem;
+            }
+            th, td {
+                padding: 0.4rem 0.5rem;
+            }
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📰 Новость: алгоритм 4-раскраски справляется со 100 вершинами</h1>
+
+    <p class="date"><strong>Дата:</strong> 2026-09-21</p>
+
+    <h2>Что достигнуто</h2>
+
+    <p>
+        Разработан детерминированный алгоритм 4-раскраски планарных графов,
+        который был протестирован на графах размером в сто вершин.
+    </p>
+
+    <p>
+        Параметры успешности раскраски можно посмотреть в таблице ниже.
+        Таблица отражает информацию по строкам:
+    </p>
+
+    <ul>
+        <li><strong>Всего графов</strong> — количество графов, поданных на вход.</li>
+        <li><strong>Успешно раскрашено</strong> — количество графов, для которых алгоритм
+            нашёл корректную 4-раскраску без конфликтов.</li>
+        <li><strong>Среднее время</strong> — среднее время обработки одного успешно
+            раскрашенного графа.</li>
+        <li><strong>Разброс времени</strong> — минимальное и максимальное время обработки
+            среди успешных графов.</li>
+    </ul>
+
+    <h2>Результаты тестирования</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Всего графов</th>
+                <th>Успешно раскрашено</th>
+                <th>Среднее время</th>
+                <th>Разброс времени</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>100</td>
+                <td>91</td>
+                <td>~14 сек</td>
+                <td>4.93 — 139.42 сек</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="stat-grid">
+        <div class="stat-card success">
+            <span class="number">91</span>
+            <span class="label">успешно раскрашено</span>
+        </div>
+        <div class="stat-card fail">
+            <span class="number">9</span>
+            <span class="label">Fail</span>
+        </div>
+        <div class="stat-card">
+            <span class="number">180</span>
+            <span class="label">секунд — лимит на граф</span>
+        </div>
+    </div>
+
+    <div class="highlight-box warning">
+        <strong>Важное замечание о Fail:</strong>
+        <p style="margin: 0.5rem 0 0 0;">
+            Fail бывает двух видов:
+        </p>
+        <ul>
+            <li><strong>Таймаут</strong> — программа не справилась за 180 секунд,
+                лог не создан.</li>
+            <li><strong>Конфликты</strong> — программа завершилась, но раскраска
+                содержит конфликты (лог создан со статусом FAILED).</li>
+        </ul>
+    </div>
+
+    <p class="note">
+        Данные приведены по результатам прогона 100 графов (нумерация 000–099).
+        Из них 91 граф был успешно раскрашен без конфликтов.
+        Остальные 9 графов помечены как Fail:
+    </p>
+
+    <ul>
+        <li><strong>4 графа</strong> (011, 033, 062, 085) — не завершили работу
+            за отведённые 180 секунд (таймаут). Лог не создан.</li>
+        <li><strong>5 графов</strong> (002, 012, 034, 088, 093) — завершились,
+            но содержат конфликты в раскраске. Лог создан со статусом FAILED.</li>
+    </ul>
+
+    <h2>Сокращённые логи</h2>
+
+    <p>
+        Лог-файлы можно посмотреть здесь:
+    </p>
+
+    <p>
+        <a href="https://github.com/Vasilii-Kostin/4CT/tree/main/graphs100_results"
+           target="_blank" class="log-link">
+            📂 graphs100_results — сокращённые логи раскраски (GitHub)
+        </a>
+    </p>
+
+    <p>
+        В папке находятся текстовые файлы с краткой информацией по каждому графу:
+        статус (SUCCESS / FAILED), время выполнения, граф, раскраска по вершинам
+        и результат проверки.
+    </p>
+
+    <!-- Подключаем меню и подвал -->
+    <script src="menu.js"></script>
+
+</body>
+</html>
